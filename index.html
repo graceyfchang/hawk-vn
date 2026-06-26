@@ -1,868 +1,1617 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>資本航線 · 台越法人關係地圖（環金）</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-  :root{
-    --ink:#f5f7fa; --panel:#eaeef5; --panel-2:#dfe6f0;
-    --hairline:#c2cdd9; --paper:#1a2535; --muted:#607585;
-    --tw:#b85225; --vn:#2a7f6a; --gold:#9b6f00;
-    --serif:'Spectral',Georgia,serif;
-    --sans:'IBM Plex Sans',-apple-system,'Segoe UI',Arial,sans-serif;
-    --mono:'IBM Plex Mono','SF Mono',Consolas,monospace;
-  }
-  *{box-sizing:border-box;}
-  html,body{margin:0;padding:0;background:var(--ink);color:var(--paper);font-family:var(--sans);}
-  body{line-height:1.5;}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>資本航線 · 台越法人關係地圖（環金）</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --ink: #f5f7fa;
+      --panel: #eaeef5;
+      --panel-2: #dfe6f0;
+      --hairline: #c2cdd9;
+      --paper: #1a2535;
+      --muted: #607585;
+      --tw: #b85225;
+      --vn: #2a7f6a;
+      --gold: #9b6f00;
+      --serif: 'Spectral', Georgia, serif;
+      --sans: 'IBM Plex Sans', -apple-system, 'Segoe UI', Arial, sans-serif;
+      --mono: 'IBM Plex Mono', 'SF Mono', Consolas, monospace;
+    }
 
-  .masthead{padding:48px 24px 26px;max-width:1220px;margin:0 auto;border-bottom:1px solid var(--hairline);}
-  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--vn);display:flex;align-items:center;gap:10px;margin-bottom:16px;}
-  .eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--tw);}
-  h1{font-family:var(--serif);font-weight:600;font-size:clamp(28px,5vw,48px);margin:0 0 10px;letter-spacing:-.01em;}
-  h1 em{font-style:italic;color:var(--gold);font-weight:500;}
-  .lede{max-width:700px;color:var(--muted);font-size:15px;margin:0 0 18px;}
-  .hint b{color:var(--gold);font-weight:500;}
-  .def-pills{display:flex;flex-wrap:wrap;gap:6px 14px;font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-top:14px;}
-  .def-pills span{padding:3px 8px;border:1px solid var(--hairline);border-radius:2px;}
-  .def-pills span b{color:var(--gold);}
+    * {
+      box-sizing: border-box;
+    }
 
-  /* ─ toolbar ─ */
-  .toolbar{max-width:1220px;margin:16px auto 0;padding:0 24px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
-  .filter-btn{padding:5px 12px;border-radius:20px;border:1px solid var(--hairline);background:transparent;color:var(--muted);font-size:11px;font-family:var(--mono);cursor:pointer;transition:all .2s;}
-  .filter-btn.on{background:rgba(216,168,87,.15);border-color:var(--gold);color:var(--gold);}
-  .filter-btn:hover:not(.on){border-color:var(--vn);color:var(--vn);}
-  .toolbar-sep{width:1px;height:20px;background:var(--hairline);margin:0 4px;}
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      background: var(--ink);
+      color: var(--paper);
+      font-family: var(--sans);
+    }
 
-  .legend{max-width:1220px;margin:14px auto 0;padding:0 24px;display:flex;flex-wrap:wrap;gap:8px 28px;}
-  .legend-row{display:flex;align-items:center;gap:8px;font-size:12px;}
-  .legend-row .sw{flex:0 0 auto;}
-  .sw-line{width:28px;height:2px;}
-  .sw-dot{width:12px;height:12px;border-radius:50%;border:2px solid var(--tw);}
-  .sw-dot.vn{border-color:var(--vn);}
-  .sw-dot.orphan{border-style:dashed;border-color:var(--muted);background:transparent;}
-  .legend-row span{color:var(--muted);}
+    body {
+      line-height: 1.5;
+    }
 
-  main{max-width:1220px;margin:0 auto;padding:22px 24px 10px;}
-  #graph-wrap{position:relative;width:100%;height:min(76vh,640px);min-height:400px;background:var(--panel);border:1px solid var(--hairline);border-radius:4px;overflow:hidden;}
-  #graph-wrap::before{content:'拖曳節點 · 點圓圈看登記資料 · 點線看來源佐證';position:absolute;top:10px;left:14px;font-family:var(--mono);font-size:10.5px;color:var(--muted);z-index:3;pointer-events:none;}
-  #graph{width:100%;height:100%;display:block;cursor:grab;}
+    .masthead {
+      padding: 48px 24px 26px;
+      max-width: 1220px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--hairline);
+    }
 
-  /* ─ links ─ */
-  .linkgroup{cursor:pointer;}
-  .link-hit{stroke:transparent;stroke-width:16;pointer-events:stroke;}
-  .link{fill:none;transition:stroke-width .15s,opacity .2s;}
-  .link.invest{stroke:var(--gold);stroke-width:1.5;opacity:.82;}
-  .link.flow{stroke:var(--gold);stroke-width:2.2;stroke-dasharray:6 5;animation:flowmove 1.8s linear infinite;opacity:.95;}
-  .link.group{stroke:var(--vn);stroke-width:1.2;stroke-dasharray:2 5;opacity:.72;}
-  .linkgroup:hover .link{opacity:1;}
-  .linkgroup:hover .link.invest{stroke-width:2.5;}
-  .linkgroup:hover .link.flow{stroke-width:3;}
-  .linkgroup:hover .link.group{stroke-width:2;}
-  .linkgroup.dim .link{opacity:.05!important;animation:none!important;}
-  @keyframes flowmove{to{stroke-dashoffset:-120;}}
-  @media(prefers-reduced-motion:reduce){.link.flow{animation:none;}}
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: var(--vn);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
 
-  /* ─ nodes ─ */
-  .node circle{stroke-width:2;cursor:pointer;transition:opacity .2s,r .15s;}
-  .node.tw circle{fill:#f0ddd4;stroke:var(--tw);}
-  .node.vn circle{fill:#c8e6de;stroke:var(--vn);}
-  .node.orphan circle{stroke-dasharray:4 3;stroke:var(--muted);fill:#dde4ef;stroke-opacity:.6;}
-  .node.listed circle{stroke:var(--gold);stroke-width:2.5;}
-  .node.new-vn circle{stroke:#e05c3a;stroke-width:2.5;}
-  .ring-pulse{fill:none;stroke:#e05c3a;stroke-width:1.5;stroke-dasharray:4,3;animation:pulse 2s ease-in-out infinite;}
-  @keyframes pulse{0%,100%{stroke-opacity:.9;}50%{stroke-opacity:.15;}}
-  .node.dim{opacity:.15;}
-  .node:hover circle{r:32;}
-  .node text{font-family:var(--mono);font-size:9.5px;fill:#1a2535;text-anchor:middle;pointer-events:none;}
-  .node .sub-tag{font-size:8px;fill:var(--muted);}
-  .node.new-vn .sub-tag{fill:#e05c3a;}
-  .node.listed .sub-tag{fill:var(--gold);}
+    .eyebrow .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--tw);
+    }
 
-  /* ─ detail panel (bottom sheet) ─ */
-  #backdrop{position:fixed;inset:0;background:rgba(100,120,145,.4);opacity:0;pointer-events:none;transition:opacity .2s;z-index:10;}
-  #backdrop.open{opacity:1;pointer-events:auto;}
-  #panel{position:fixed;left:0;right:0;bottom:0;max-width:700px;margin:0 auto;max-height:74vh;overflow-y:auto;background:var(--panel-2);border:1px solid var(--hairline);border-bottom:none;border-radius:10px 10px 0 0;padding:22px 24px 32px;transform:translateY(100%);transition:transform .28s cubic-bezier(.2,.8,.2,1);z-index:11;}
-  #panel.open{transform:translateY(0);}
-  #panel-close{position:absolute;top:14px;right:16px;background:none;border:none;color:var(--muted);font-size:22px;line-height:1;cursor:pointer;}
-  #panel-close:hover{color:var(--paper);}
-  .p-country{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;}
-  .p-country.tw{color:var(--tw);} .p-country.vn{color:var(--vn);}
-  .p-country.edge-invest,.p-country.edge-flow{color:var(--gold);} .p-country.edge-group{color:var(--vn);}
-  .p-regid{font-family:var(--mono);font-size:11px;color:var(--muted);float:right;}
-  #panel h2{font-family:var(--serif);font-weight:600;font-size:21px;margin:8px 0 2px;clear:both;}
-  #panel .name-en{font-size:12.5px;color:var(--muted);font-style:italic;font-family:var(--serif);margin:0 0 14px;}
-  .facts{display:grid;grid-template-columns:auto 1fr;gap:5px 12px;font-size:12.5px;margin-bottom:4px;}
-  .facts dt{color:var(--muted);font-family:var(--mono);font-size:10px;align-self:start;padding-top:2px;}
-  .facts dd{margin:0;}
-  .capital-line{margin-top:12px;padding-top:12px;border-top:1px solid var(--hairline);display:flex;align-items:baseline;justify-content:space-between;gap:10px;flex-wrap:wrap;}
-  .capital-line .amount{font-family:var(--serif);font-size:20px;font-weight:600;color:var(--gold);}
-  .capital-line .amount.unclear{color:var(--muted);font-size:15px;}
-  .confidence{font-family:var(--mono);font-size:10.5px;color:var(--muted);}
-  .confidence.high{color:var(--vn);}
-  .p-note{margin-top:12px;font-size:12.5px;color:var(--muted);line-height:1.65;border-left:2px solid var(--hairline);padding-left:12px;}
-  .p-note b{color:var(--paper);}
-  .p-note ul.events{margin:7px 0 0;padding:0;list-style:none;}
-  .p-note ul.events li{font-family:var(--mono);font-size:11px;color:var(--gold);margin-bottom:3px;}
-  .banner{margin:9px 0 4px;padding:7px 12px;border-radius:3px;font-family:var(--mono);font-size:11px;letter-spacing:.03em;}
-  .banner.warn{background:rgba(213,152,0,.08);border:1px solid rgba(213,152,0,.3);color:#d4a84b;}
-  .banner.new{background:rgba(224,92,58,.1);border:1px solid rgba(224,92,58,.35);color:#e07a5f;}
-  .banner.orphan{background:rgba(80,120,180,.09);border:1px solid rgba(80,120,180,.25);color:#7ab0ff;}
-  .p-rel-title{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 7px;}
-  .p-rel{display:flex;align-items:center;gap:8px;font-size:12.5px;padding:8px 0;border-top:1px solid var(--hairline);cursor:pointer;transition:background .15s;}
-  .p-rel:hover{background:rgba(216,168,87,.06);}
-  .p-rel .ptag{font-family:var(--mono);font-size:10px;padding:2px 7px;border-radius:2px;border:1px solid var(--hairline);color:var(--muted);flex:0 0 auto;}
-  .p-rel .chev{margin-left:auto;color:var(--muted);font-family:var(--mono);}
-  .p-sources{margin-top:4px;}
-  .p-source-row{display:flex;gap:10px;font-size:12px;padding:8px 0;border-top:1px solid var(--hairline);}
-  .p-source-row .stag{font-family:var(--mono);font-size:9.5px;padding:2px 7px;border-radius:2px;border:1px solid var(--gold);color:var(--gold);flex:0 0 auto;white-space:nowrap;align-self:start;margin-top:1px;}
-  .p-source-row .sdesc{color:var(--muted);line-height:1.55;}
-  .back-link{font-family:var(--mono);font-size:11px;color:var(--muted);cursor:pointer;display:inline-block;margin-bottom:8px;}
-  .back-link:hover{color:var(--gold);}
+    h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(28px, 5vw, 48px);
+      margin: 0 0 10px;
+      letter-spacing: -.01em;
+    }
 
-  /* ─ verify drawer ─ */
-  #verify-drawer{margin-top:16px;border-top:1px solid var(--hairline);padding-top:14px;}
-  #verify-drawer h4{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 8px;}
-  .vlink{display:flex;align-items:center;gap:8px;font-size:12px;padding:7px 0;border-bottom:1px solid var(--hairline);color:var(--muted);}
-  .vlink a{color:#7ab0ff;text-decoration:none;flex:1;}
-  .vlink a:hover{text-decoration:underline;}
-  .vlink .vstatus{font-family:var(--mono);font-size:10px;padding:2px 6px;border-radius:2px;flex:0 0 auto;}
-  .vstatus.found{background:rgba(59,156,130,.15);border:1px solid var(--vn);color:var(--vn);}
-  .vstatus.pending{background:rgba(100,130,180,.1);border:1px solid #4a6090;color:#7ab0ff;}
+    h1 em {
+      font-style: italic;
+      color: var(--gold);
+      font-weight: 500;
+    }
 
-  footer{max-width:1220px;margin:28px auto 0;padding:24px 24px 60px;border-top:1px solid var(--hairline);}
-  footer h3{font-family:var(--serif);font-size:15px;margin:0 0 10px;}
-  footer p{color:var(--muted);font-size:13px;line-height:1.7;max-width:780px;margin:0 0 12px;}
-  footer .src-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 28px;margin-top:16px;}
-  footer .src-grid div{font-family:var(--mono);font-size:11px;color:var(--muted);border-top:1px solid var(--hairline);padding-top:7px;}
-  footer .src-grid div b{color:var(--paper);display:block;font-family:var(--sans);font-size:12px;margin-bottom:2px;font-weight:500;}
-</style>
+    .lede {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 15px;
+      margin: 0 0 18px;
+    }
+
+    .hint b {
+      color: var(--gold);
+      font-weight: 500;
+    }
+
+    .def-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted);
+      margin-top: 14px;
+    }
+
+    .def-pills span {
+      padding: 3px 8px;
+      border: 1px solid var(--hairline);
+      border-radius: 2px;
+    }
+
+    .def-pills span b {
+      color: var(--gold);
+    }
+
+    /* ─ toolbar ─ */
+    .toolbar {
+      max-width: 1220px;
+      margin: 16px auto 0;
+      padding: 0 24px;
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 5px 12px;
+      border-radius: 20px;
+      border: 1px solid var(--hairline);
+      background: transparent;
+      color: var(--muted);
+      font-size: 11px;
+      font-family: var(--mono);
+      cursor: pointer;
+      transition: all .2s;
+    }
+
+    .filter-btn.on {
+      background: rgba(216, 168, 87, .15);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .filter-btn:hover:not(.on) {
+      border-color: var(--vn);
+      color: var(--vn);
+    }
+
+    .toolbar-sep {
+      width: 1px;
+      height: 20px;
+      background: var(--hairline);
+      margin: 0 4px;
+    }
+
+    .legend {
+      max-width: 1220px;
+      margin: 14px auto 0;
+      padding: 0 24px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 28px;
+    }
+
+    .legend-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+    }
+
+    .legend-row .sw {
+      flex: 0 0 auto;
+    }
+
+    .sw-line {
+      width: 28px;
+      height: 2px;
+    }
+
+    .sw-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--tw);
+    }
+
+    .sw-dot.vn {
+      border-color: var(--vn);
+    }
+
+    .sw-dot.orphan {
+      border-style: dashed;
+      border-color: var(--muted);
+      background: transparent;
+    }
+
+    .legend-row span {
+      color: var(--muted);
+    }
+
+    main {
+      max-width: 1220px;
+      margin: 0 auto;
+      padding: 22px 24px 10px;
+    }
+
+    #graph-wrap {
+      position: relative;
+      width: 100%;
+      height: min(76vh, 640px);
+      min-height: 400px;
+      background: var(--panel);
+      border: 1px solid var(--hairline);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    #graph-wrap::before {
+      content: '拖曳節點 · 點圓圈看登記資料 · 點線看來源佐證';
+      position: absolute;
+      top: 10px;
+      left: 14px;
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted);
+      z-index: 3;
+      pointer-events: none;
+    }
+
+    #graph {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: grab;
+    }
+
+    /* ─ links ─ */
+    .linkgroup {
+      cursor: pointer;
+    }
+
+    .link-hit {
+      stroke: transparent;
+      stroke-width: 16;
+      pointer-events: stroke;
+    }
+
+    .link {
+      fill: none;
+      transition: stroke-width .15s, opacity .2s;
+    }
+
+    .link.invest {
+      stroke: var(--gold);
+      stroke-width: 1.5;
+      opacity: .82;
+    }
+
+    .link.flow {
+      stroke: var(--gold);
+      stroke-width: 2.2;
+      stroke-dasharray: 6 5;
+      animation: flowmove 1.8s linear infinite;
+      opacity: .95;
+    }
+
+    .link.group {
+      stroke: var(--vn);
+      stroke-width: 1.2;
+      stroke-dasharray: 2 5;
+      opacity: .72;
+    }
+
+    .linkgroup:hover .link {
+      opacity: 1;
+    }
+
+    .linkgroup:hover .link.invest {
+      stroke-width: 2.5;
+    }
+
+    .linkgroup:hover .link.flow {
+      stroke-width: 3;
+    }
+
+    .linkgroup:hover .link.group {
+      stroke-width: 2;
+    }
+
+    .linkgroup.dim .link {
+      opacity: .05 !important;
+      animation: none !important;
+    }
+
+    @keyframes flowmove {
+      to {
+        stroke-dashoffset: -120;
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+      .link.flow {
+        animation: none;
+      }
+    }
+
+    /* ─ nodes ─ */
+    .node circle {
+      stroke-width: 2;
+      cursor: pointer;
+      transition: opacity .2s, r .15s;
+    }
+
+    .node.tw circle {
+      fill: #f0ddd4;
+      stroke: var(--tw);
+    }
+
+    .node.vn circle {
+      fill: #c8e6de;
+      stroke: var(--vn);
+    }
+
+    .node.orphan circle {
+      stroke-dasharray: 4 3;
+      stroke: var(--muted);
+      fill: #dde4ef;
+      stroke-opacity: .6;
+    }
+
+    .node.listed circle {
+      stroke: var(--gold);
+      stroke-width: 2.5;
+    }
+
+    .node.new-vn circle {
+      stroke: #e05c3a;
+      stroke-width: 2.5;
+    }
+
+    .ring-pulse {
+      fill: none;
+      stroke: #e05c3a;
+      stroke-width: 1.5;
+      stroke-dasharray: 4, 3;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        stroke-opacity: .9;
+      }
+
+      50% {
+        stroke-opacity: .15;
+      }
+    }
+
+    .node.dim {
+      opacity: .15;
+    }
+
+    .node:hover circle {
+      r: 32;
+    }
+
+    .node text {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      fill: #1a2535;
+      text-anchor: middle;
+      pointer-events: none;
+    }
+
+    .node .sub-tag {
+      font-size: 8px;
+      fill: var(--muted);
+    }
+
+    .node.new-vn .sub-tag {
+      fill: #e05c3a;
+    }
+
+    .node.listed .sub-tag {
+      fill: var(--gold);
+    }
+
+    /* ─ detail panel (bottom sheet) ─ */
+    #backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(100, 120, 145, .4);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .2s;
+      z-index: 10;
+    }
+
+    #backdrop.open {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    #panel {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      max-width: 700px;
+      margin: 0 auto;
+      max-height: 74vh;
+      overflow-y: auto;
+      background: var(--panel-2);
+      border: 1px solid var(--hairline);
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+      padding: 22px 24px 32px;
+      transform: translateY(100%);
+      transition: transform .28s cubic-bezier(.2, .8, .2, 1);
+      z-index: 11;
+    }
+
+    #panel.open {
+      transform: translateY(0);
+    }
+
+    #panel-close {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    #panel-close:hover {
+      color: var(--paper);
+    }
+
+    .p-country {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .p-country.tw {
+      color: var(--tw);
+    }
+
+    .p-country.vn {
+      color: var(--vn);
+    }
+
+    .p-country.edge-invest,
+    .p-country.edge-flow {
+      color: var(--gold);
+    }
+
+    .p-country.edge-group {
+      color: var(--vn);
+    }
+
+    .p-regid {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      float: right;
+    }
+
+    #panel h2 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: 21px;
+      margin: 8px 0 2px;
+      clear: both;
+    }
+
+    #panel .name-en {
+      font-size: 12.5px;
+      color: var(--muted);
+      font-style: italic;
+      font-family: var(--serif);
+      margin: 0 0 14px;
+    }
+
+    .facts {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 5px 12px;
+      font-size: 12.5px;
+      margin-bottom: 4px;
+    }
+
+    .facts dt {
+      color: var(--muted);
+      font-family: var(--mono);
+      font-size: 10px;
+      align-self: start;
+      padding-top: 2px;
+    }
+
+    .facts dd {
+      margin: 0;
+    }
+
+    .capital-line {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--hairline);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .capital-line .amount {
+      font-family: var(--serif);
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    .capital-line .amount.unclear {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .confidence {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      color: var(--muted);
+    }
+
+    .confidence.high {
+      color: var(--vn);
+    }
+
+    .p-note {
+      margin-top: 12px;
+      font-size: 12.5px;
+      color: var(--muted);
+      line-height: 1.65;
+      border-left: 2px solid var(--hairline);
+      padding-left: 12px;
+    }
+
+    .p-note b {
+      color: var(--paper);
+    }
+
+    .p-note ul.events {
+      margin: 7px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .p-note ul.events li {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--gold);
+      margin-bottom: 3px;
+    }
+
+    .banner {
+      margin: 9px 0 4px;
+      padding: 7px 12px;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .03em;
+    }
+
+    .banner.warn {
+      background: rgba(213, 152, 0, .08);
+      border: 1px solid rgba(213, 152, 0, .3);
+      color: #d4a84b;
+    }
+
+    .banner.new {
+      background: rgba(224, 92, 58, .1);
+      border: 1px solid rgba(224, 92, 58, .35);
+      color: #e07a5f;
+    }
+
+    .banner.orphan {
+      background: rgba(80, 120, 180, .09);
+      border: 1px solid rgba(80, 120, 180, .25);
+      color: #7ab0ff;
+    }
+
+    .p-rel-title {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 16px 0 7px;
+    }
+
+    .p-rel {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12.5px;
+      padding: 8px 0;
+      border-top: 1px solid var(--hairline);
+      cursor: pointer;
+      transition: background .15s;
+    }
+
+    .p-rel:hover {
+      background: rgba(216, 168, 87, .06);
+    }
+
+    .p-rel .ptag {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 7px;
+      border-radius: 2px;
+      border: 1px solid var(--hairline);
+      color: var(--muted);
+      flex: 0 0 auto;
+    }
+
+    .p-rel .chev {
+      margin-left: auto;
+      color: var(--muted);
+      font-family: var(--mono);
+    }
+
+    .p-sources {
+      margin-top: 4px;
+    }
+
+    .p-source-row {
+      display: flex;
+      gap: 10px;
+      font-size: 12px;
+      padding: 8px 0;
+      border-top: 1px solid var(--hairline);
+    }
+
+    .p-source-row .stag {
+      font-family: var(--mono);
+      font-size: 9.5px;
+      padding: 2px 7px;
+      border-radius: 2px;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      flex: 0 0 auto;
+      white-space: nowrap;
+      align-self: start;
+      margin-top: 1px;
+    }
+
+    .p-source-row .sdesc {
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .back-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      cursor: pointer;
+      display: inline-block;
+      margin-bottom: 8px;
+    }
+
+    .back-link:hover {
+      color: var(--gold);
+    }
+
+    /* ─ verify drawer ─ */
+    #verify-drawer {
+      margin-top: 16px;
+      border-top: 1px solid var(--hairline);
+      padding-top: 14px;
+    }
+
+    #verify-drawer h4 {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin: 0 0 8px;
+    }
+
+    .vlink {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--hairline);
+      color: var(--muted);
+    }
+
+    .vlink a {
+      color: #7ab0ff;
+      text-decoration: none;
+      flex: 1;
+    }
+
+    .vlink a:hover {
+      text-decoration: underline;
+    }
+
+    .vlink .vstatus {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 2px 6px;
+      border-radius: 2px;
+      flex: 0 0 auto;
+    }
+
+    .vstatus.found {
+      background: rgba(59, 156, 130, .15);
+      border: 1px solid var(--vn);
+      color: var(--vn);
+    }
+
+    .vstatus.pending {
+      background: rgba(100, 130, 180, .1);
+      border: 1px solid #4a6090;
+      color: #7ab0ff;
+    }
+
+    footer {
+      max-width: 1220px;
+      margin: 28px auto 0;
+      padding: 24px 24px 60px;
+      border-top: 1px solid var(--hairline);
+    }
+
+    footer h3 {
+      font-family: var(--serif);
+      font-size: 15px;
+      margin: 0 0 10px;
+    }
+
+    footer p {
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.7;
+      max-width: 780px;
+      margin: 0 0 12px;
+    }
+
+    footer .src-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 8px 28px;
+      margin-top: 16px;
+    }
+
+    footer .src-grid div {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--muted);
+      border-top: 1px solid var(--hairline);
+      padding-top: 7px;
+    }
+
+    footer .src-grid div b {
+      color: var(--paper);
+      display: block;
+      font-family: var(--sans);
+      font-size: 12px;
+      margin-bottom: 2px;
+      font-weight: 500;
+    }
+  </style>
 </head>
+
 <body>
 
-<header class="masthead">
-  <div class="eyebrow"><span class="dot"></span>環金客群 · 跨境法人登記地圖 · 台灣 ⇄ 越南</div>
-  <h1>資本航線<em>。</em></h1>
-  <p class="lede">19 個法人節點，18 條關係線。KY上市集團與未上市中小台商並列，涵蓋製鞋、紡織、電子、電池、精密零件、IC燒錄等產業。<span class="hint">點<b>圓圈</b>看公司資料，點<b>線</b>看來源，點<b>待查節點</b>直接開啟查詢入口。</span></p>
-  <div class="def-pills">
-    <span>環金定義</span>
-    <span>年收 <b>3–60億 NTD</b>（境外 &gt; 境內）</span>
-    <span>家族企業</span>
-    <span>未公開發行 / <b>F 或 KY</b></span>
-    <span>台灣 / 境外主體</span>
-    <span>跨境 <b>2–3境</b>（中港東協）</span>
+  <header class="masthead">
+    <div class="eyebrow"><span class="dot"></span>環金客群 · 跨境法人關係 · 台灣 ⇄ 越南</div>
+    <h1>法人關係地圖<em>。</em></h1>
+    <p class="lede">19 個法人節點，18 條關係線。KY上市集團與未上市中小台商並列，涵蓋製鞋、紡織、電子、電池、精密零件、IC燒錄等產業。<span
+        class="hint">點<b>圓圈</b>看公司資料，點<b>線</b>看來源，點<b>待查節點</b>直接開啟查詢入口。</span></p>
+    <div class="def-pills">
+      <span>環金定義</span>
+      <span>年收 <b>3–60億 NTD</b>（境外 &gt; 境內）</span>
+      <span>家族企業</span>
+      <span>未公開發行 / <b>F 或 KY</b></span>
+      <span>台灣 / 境外主體</span>
+      <span>跨境 <b>2–3境</b>（中港東協）</span>
+    </div>
+  </header>
+
+  <div class="toolbar">
+    <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">篩選：</span>
+    <button class="filter-btn on" data-f="all">全部</button>
+    <button class="filter-btn" data-f="ky">KY上市集團</button>
+    <button class="filter-btn" data-f="sme">未上市中小</button>
+    <button class="filter-btn" data-f="new">近期設立(1–2年)</button>
+    <div class="toolbar-sep"></div>
+    <button class="filter-btn" data-f="invest">投資關係</button>
+    <button class="filter-btn" data-f="flow">金流事件</button>
+    <button class="filter-btn" data-f="group">集團架構</button>
   </div>
-</header>
 
-<div class="toolbar">
-  <span style="font-family:var(--mono);font-size:11px;color:var(--muted)">篩選：</span>
-  <button class="filter-btn on" data-f="all">全部</button>
-  <button class="filter-btn" data-f="ky">KY上市集團</button>
-  <button class="filter-btn" data-f="sme">未上市中小</button>
-  <button class="filter-btn" data-f="new">近期設立(1–2年)</button>
-  <div class="toolbar-sep"></div>
-  <button class="filter-btn" data-f="invest">投資關係</button>
-  <button class="filter-btn" data-f="flow">金流事件</button>
-  <button class="filter-btn" data-f="group">集團架構</button>
-</div>
-
-<div class="legend">
-  <div class="legend-row"><div class="sw sw-dot"></div><span>台灣/KY母公司</span></div>
-  <div class="legend-row"><div class="sw sw-dot vn"></div><span>越南子公司</span></div>
-  <div class="legend-row"><div class="sw sw-dot orphan"></div><span>台灣端待查（點節點→開啟查詢入口）</span></div>
-  <div class="legend-row"><div class="sw sw-line" style="background:var(--gold)"></div><span>投資控股</span></div>
-  <div class="legend-row"><div class="sw sw-line" style="background:repeating-linear-gradient(90deg,var(--gold) 0 5px,transparent 5px 9px)"></div><span>金流事件</span></div>
-  <div class="legend-row"><div class="sw sw-line" style="background:repeating-linear-gradient(90deg,var(--vn) 0 4px,transparent 4px 8px)"></div><span>集團架構</span></div>
-</div>
-
-<main>
-  <div id="graph-wrap"><svg id="graph"></svg></div>
-</main>
-
-<footer>
-  <h3>方法論與限制</h3>
-  <p>本圖依實際查證狀態分三層：<b style="color:var(--paper)">KY上市集團</b>（鈺齊、台南、三集瑞、吉源）來源為台灣公開資訊觀測站；<b style="color:var(--paper)">未上市中小台商</b>（和正豐、安普新→已上市、統達能源、Charterleader）透過越南稅號MST交叉驗證；<b style="color:var(--paper)">待查節點</b>（順成工業台灣端）越南端已確認，台灣端需手動查商業司。點開任一節點底部的「查詢入口」可直接跳轉相關資料庫。</p>
-  <p><b style="color:var(--paper)">安普新（TWSE:6743）</b>已於2020年上市，嚴格已脫離環金未公開定義，但越南廠2019年設立時尚未上市，保留作升格軌跡案例。<b style="color:var(--paper)">三集瑞越南廠</b>（2025年動土）與<b style="color:var(--paper)">TD Hitech越南廠</b>（2024年2月）為近1–2年最新設廠案例，環金優先鎖定。</p>
-  <div class="src-grid">
-    <div><b>越南企業登記</b>dangkykinhdoanh.gov.vn</div>
-    <div><b>越南稅號查詢</b>masothue.com / thuvienphapluat.vn</div>
-    <div><b>台灣公司登記</b>twincn.com（商業司）</div>
-    <div><b>台灣待查入口</b>findbiz.nat.gov.tw</div>
-    <div><b>進出口紀錄</b>panjiva.com / volza.com</div>
-    <div><b>更新日期</b>2026-06-20（程式自動查詢補強）</div>
+  <div class="legend">
+    <div class="legend-row">
+      <div class="sw sw-dot"></div><span>台灣/KY母公司</span>
+    </div>
+    <div class="legend-row">
+      <div class="sw sw-dot vn"></div><span>越南子公司</span>
+    </div>
+    <div class="legend-row">
+      <div class="sw sw-dot orphan"></div><span>台灣端待查（點節點→開啟查詢入口）</span>
+    </div>
+    <div class="legend-row">
+      <div class="sw sw-line" style="background:var(--gold)"></div><span>投資控股</span>
+    </div>
+    <div class="legend-row">
+      <div class="sw sw-line" style="background:repeating-linear-gradient(90deg,var(--gold) 0 5px,transparent 5px 9px)">
+      </div><span>金流事件</span>
+    </div>
+    <div class="legend-row">
+      <div class="sw sw-line" style="background:repeating-linear-gradient(90deg,var(--vn) 0 4px,transparent 4px 8px)">
+      </div><span>集團架構</span>
+    </div>
   </div>
-</footer>
 
-<div id="backdrop"></div>
-<div id="panel"><button id="panel-close">&times;</button><div id="panel-content"></div></div>
+  <main>
+    <div id="graph-wrap"><svg id="graph"></svg></div>
+  </main>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
-<script>
-// ═══════════════════════════════════════════
-//  節點資料
-//  tag: 'ky'=KY上市集團  'sme'=未上市中小  (兩者共存時取最強)
-// ═══════════════════════════════════════════
-const nodes = [
+  <footer>
+    <h3>方法論與限制</h3>
+    <p>本圖依實際查證狀態分三層：<b style="color:var(--paper)">KY上市集團</b>（鈺齊、台南、三集瑞、吉源）來源為台灣公開資訊觀測站；<b
+        style="color:var(--paper)">未上市中小台商</b>（和正豐、安普新→已上市、統達能源、Charterleader）透過越南稅號MST交叉驗證；<b
+        style="color:var(--paper)">待查節點</b>（順成工業台灣端）越南端已確認，台灣端需手動查商業司。點開任一節點底部的「查詢入口」可直接跳轉相關資料庫。</p>
+    <p><b style="color:var(--paper)">安普新（TWSE:6743）</b>已於2020年上市，嚴格已脫離環金未公開定義，但越南廠2019年設立時尚未上市，保留作升格軌跡案例。<b
+        style="color:var(--paper)">三集瑞越南廠</b>（2025年動土）與<b style="color:var(--paper)">TD
+        Hitech越南廠</b>（2024年2月）為近1–2年最新設廠案例，環金優先鎖定。</p>
+    <div class="src-grid">
+      <div><b>越南企業登記</b>dangkykinhdoanh.gov.vn</div>
+      <div><b>越南稅號查詢</b>masothue.com / thuvienphapluat.vn</div>
+      <div><b>台灣公司登記</b>twincn.com（商業司）</div>
+      <div><b>台灣待查入口</b>findbiz.nat.gov.tw</div>
+      <div><b>進出口紀錄</b>panjiva.com / volza.com</div>
+      <div><b>更新日期</b>2026-06-20（程式自動查詢補強）</div>
+    </div>
+  </footer>
 
-  // ── KY 上市集團 ──────────────────────────
+  <div id="backdrop"></div>
+  <div id="panel"><button id="panel-close">&times;</button>
+    <div id="panel-content"></div>
+  </div>
 
-  { id:'yq-ky', group:'tw', tag:'ky', label:'鈺齊-KY',
-    name:'鈺齊-KY（9802）Fulgent Sun International Ltd.',
-    nameEn:'開曼群島設籍 / TWSE:9802 / 新北市（管理）',
-    regId:'TWSE 9802',
-    facts:[['代表人','林文智（董事長）/ 廖芳祝（總經理‧配偶）'],
-           ['成立','1995年（集團）/ 2012年台灣上市'],['設籍','開曼群島'],
-           ['年收','約NT$100億（2023年）'],['產業','戶外製鞋 OEM/ODM（GORE-TEX認證）'],
-           ['家族結構','林文智夫婦高度持股，典型台灣製鞋家族企業']],
-    capital:{amount:'年收 ~NT$100億', level:'high', label:'✓ 公開財報'},
-    note:'工廠分布越南59%、柬埔寨27%、中國14%，<b>境外產能遠大於境內</b>，完全符合環金「境外>境內」定義。家族治理，KY架構。',
-    events:['1995  林文智夫婦創立','2003  越南鈺齊（河內）成立','2012  台灣上市（TWSE:9802）'],
-    verifyLinks:[
-      {label:'MOPS 公開資訊觀測站', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=9802', status:'found'},
-    ]},
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+  <script>
+    // ═══════════════════════════════════════════
+    //  節點資料
+    //  tag: 'ky'=KY上市集團  'sme'=未上市中小  (兩者共存時取最強)
+    // ═══════════════════════════════════════════
+    const nodes = [
 
-  { id:'yq-vn1', group:'vn', tag:'ky', label:'越南鈺齊',
-    name:'越南鈺齊鞋業有限公司 Fulgent Sun Viet Nam',
-    nameEn:'越南河內市周邊工業區',
-    regId:'VN・河內省',
-    facts:[['成立','2003年'],['產業','戶外防水鞋（GORE-TEX 認證）'],['產能佔比','集團58.93%（2024年）']],
-    capital:{amount:'FDI金額未公開', level:'low', label:'— 集團年報產能佔比可查'},
-    note:'鈺齊集團最大製造基地，越南廠佔集團近六成產能。',
-    events:['2003  成立，進駐河內工業區','2024  產能58.93%'],
-    verifyLinks:[{label:'鈺齊年報（MOPS）', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=9802', status:'found'}]},
+      // ── KY 上市集團 ──────────────────────────
 
-  { id:'yq-vn2', group:'vn', tag:'ky', label:'越南鈺興',
-    name:'越南鈺興鞋業有限公司',
-    nameEn:'越南（省份未公開）',
-    regId:'VN・未公開',
-    facts:[['成立','2010年代'],['產業','功能性運動鞋'],['持股','鈺齊-KY 100%']],
-    capital:{amount:'未公開', level:'low', label:'— 計入集團合併報表'},
-    note:'鈺齊第二越南製造據點。', events:[],
-    verifyLinks:[]},
+      {
+        id: 'yq-ky', group: 'tw', tag: 'ky', label: '鈺齊-KY',
+        name: '鈺齊-KY（9802）Fulgent Sun International Ltd.',
+        nameEn: '開曼群島設籍 / TWSE:9802 / 新北市（管理）',
+        regId: 'TWSE 9802',
+        facts: [['代表人', '林文智（董事長）/ 廖芳祝（總經理‧配偶）'],
+        ['成立', '1995年（集團）/ 2012年台灣上市'], ['設籍', '開曼群島'],
+        ['年收', '約NT$100億（2023年）'], ['產業', '戶外製鞋 OEM/ODM（GORE-TEX認證）'],
+        ['家族結構', '林文智夫婦高度持股，典型台灣製鞋家族企業']],
+        capital: { amount: '年收 ~NT$100億', level: 'high', label: '✓ 公開財報' },
+        note: '工廠分布越南59%、柬埔寨27%、中國14%，<b>境外產能遠大於境內</b>，完全符合環金「境外>境內」定義。家族治理，KY架構。',
+        events: ['1995  林文智夫婦創立', '2003  越南鈺齊（河內）成立', '2012  台灣上市（TWSE:9802）'],
+        verifyLinks: [
+          { label: 'MOPS 公開資訊觀測站', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=9802', status: 'found' },
+        ]
+      },
 
-  { id:'tnn-ky', group:'tw', tag:'ky', label:'台南-KY',
-    name:'台南生活（開曼）股份有限公司 Tainan Enterprises (Cayman) Ltd.',
-    nameEn:'開曼群島1999年設立 / TWSE:5906 / 台南市（母公司）',
-    regId:'TWSE 5906',
-    facts:[['代表人','侯博明（董事長）'],['設籍','開曼群島（1999年）'],
-           ['台灣上市','2011年10月（TWSE:5906）'],['資本','NT$3.9億'],
-           ['年收','NT$21.35億（2023年）'],['產業','成衣、紡織、鞋類'],
-           ['家族結構','侯氏家族，台灣老牌紡織家族']],
-    capital:{amount:'年收 NT$21億', level:'high', label:'✓ 公開財報 / 完全落入環金範圍'},
-    note:'<b>年收21億NTD完全落入環金3–60億範圍。</b>開曼KY架構、家族企業、台灣+越南跨境佈局。',
-    events:['1999  開曼公司設立','2011  台灣上市（TWSE:5906）'],
-    verifyLinks:[{label:'MOPS 台南-KY', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=5906', status:'found'}]},
+      {
+        id: 'yq-vn1', group: 'vn', tag: 'ky', label: '越南鈺齊',
+        name: '越南鈺齊鞋業有限公司 Fulgent Sun Viet Nam',
+        nameEn: '越南河內市周邊工業區',
+        regId: 'VN・河內省',
+        facts: [['成立', '2003年'], ['產業', '戶外防水鞋（GORE-TEX 認證）'], ['產能佔比', '集團58.93%（2024年）']],
+        capital: { amount: 'FDI金額未公開', level: 'low', label: '— 集團年報產能佔比可查' },
+        note: '鈺齊集團最大製造基地，越南廠佔集團近六成產能。',
+        events: ['2003  成立，進駐河內工業區', '2024  產能58.93%'],
+        verifyLinks: [{ label: '鈺齊年報（MOPS）', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=9802', status: 'found' }]
+      },
 
-  { id:'tnn-vn', group:'vn', tag:'ky', label:'台南越南',
-    name:'Tainan Vietnam Co., Ltd.（台南越南）',
-    nameEn:'越南胡志明市周邊（南部）',
-    regId:'VN・胡志明市',
-    facts:[['成立','2000年代初'],['產業','成衣、紡織品'],['持股','台南-KY直接持股']],
-    capital:{amount:'未公開', level:'low', label:'— 集團合併計算'},
-    note:'南越生產基地，供應歐美中高端成衣品牌。', events:[],
-    verifyLinks:[]},
+      {
+        id: 'yq-vn2', group: 'vn', tag: 'ky', label: '越南鈺興',
+        name: '越南鈺興鞋業有限公司',
+        nameEn: '越南（省份未公開）',
+        regId: 'VN・未公開',
+        facts: [['成立', '2010年代'], ['產業', '功能性運動鞋'], ['持股', '鈺齊-KY 100%']],
+        capital: { amount: '未公開', level: 'low', label: '— 計入集團合併報表' },
+        note: '鈺齊第二越南製造據點。', events: [],
+        verifyLinks: []
+      },
 
-  { id:'trio-ky', group:'tw', tag:'ky', label:'三集瑞-KY',
-    name:'三集瑞國際科技股份有限公司 Trio-Tech International Ltd.',
-    nameEn:'塞席爾設籍 / 申請TWSE:6862 / 新北市中和（管理）',
-    regId:'申請中 6862',
-    facts:[['代表人','林伙利（董事長）'],['設籍','塞席爾'],
-           ['申請上市','2026年申請台灣上市（6862）'],['資本','NT$4.4億'],
-           ['年收估','NT$20億（2025年估）'],['產業','AI電感元件、車用電感'],
-           ['家族結構','林伙利家族，1990年創立']],
-    capital:{amount:'年收 ~NT$20億', level:'medium', label:'≈ 法說會估計'},
-    note:'AI電感搭上伺服器與車用趨勢。塞席爾KY離岸架構，越南廠為近1–2年最新佈局，環金鎖定重點。',
-    events:['1990  集團成立','2025  越南廠動土（32條自動化線）','2026  申請台灣上市（6862）'],
-    verifyLinks:[{label:'TWSE 三集瑞上市資訊', url:'https://www.twse.com.tw/market_insights/zh/detail/8a8216d69236c2e30192b231d53f0224', status:'found'}]},
+      {
+        id: 'tnn-ky', group: 'tw', tag: 'ky', label: '台南-KY',
+        name: '台南生活（開曼）股份有限公司 Tainan Enterprises (Cayman) Ltd.',
+        nameEn: '開曼群島1999年設立 / TWSE:5906 / 台南市（母公司）',
+        regId: 'TWSE 5906',
+        facts: [['代表人', '侯博明（董事長）'], ['設籍', '開曼群島（1999年）'],
+        ['台灣上市', '2011年10月（TWSE:5906）'], ['資本', 'NT$3.9億'],
+        ['年收', 'NT$21.35億（2023年）'], ['產業', '成衣、紡織、鞋類'],
+        ['家族結構', '侯氏家族，台灣老牌紡織家族']],
+        capital: { amount: '年收 NT$21億', level: 'high', label: '✓ 公開財報 / 完全落入環金範圍' },
+        note: '<b>年收21億NTD完全落入環金3–60億範圍。</b>開曼KY架構、家族企業、台灣+越南跨境佈局。',
+        events: ['1999  開曼公司設立', '2011  台灣上市（TWSE:5906）'],
+        verifyLinks: [{ label: 'MOPS 台南-KY', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=5906', status: 'found' }]
+      },
 
-  { id:'trio-vn', group:'vn', tag:'ky', isNew:true, label:'三集瑞越南',
-    name:'三集瑞越南製造廠（2025年動土，籌建中）',
-    nameEn:'越南（確切省份未公告）',
-    regId:'VN・籌建中',
-    facts:[['成立','2025年動土，2026年底預計量產'],['產業','AI電感、車用電感（32條自動化線）'],['持股','三集瑞-KY 100%']],
-    capital:{amount:'投資總額未公開', level:'low', label:'— 法說會未揭露'},
-    note:'⚡ 近1–2年越南新設廠，32條自動化線預計2026年底量產。',
-    events:['2025  越南廠正式動土','2026 Q4  預計量產'],
-    verifyLinks:[]},
+      {
+        id: 'tnn-vn', group: 'vn', tag: 'ky', label: '台南越南',
+        name: 'Tainan Vietnam Co., Ltd.（台南越南）',
+        nameEn: '越南胡志明市周邊（南部）',
+        regId: 'VN・胡志明市',
+        facts: [['成立', '2000年代初'], ['產業', '成衣、紡織品'], ['持股', '台南-KY直接持股']],
+        capital: { amount: '未公開', level: 'low', label: '— 集團合併計算' },
+        note: '南越生產基地，供應歐美中高端成衣品牌。', events: [],
+        verifyLinks: []
+      },
 
-  { id:'jy-ky', group:'tw', tag:'ky', label:'吉源-KY',
-    name:'吉源控股股份有限公司 Jiyuan Packaging Holdings Ltd.',
-    nameEn:'開曼群島設籍 / TWSE:8488 / 2024年12月上市',
-    regId:'TWSE 8488',
-    facts:[['設籍','開曼群島'],['台灣上市','2024年12月（TWSE:8488）'],
-           ['資本','NT$2.5億（估）'],['產業','馬口鐵罐、鋁罐包裝容器'],
-           ['家族結構','家族企業，2024年底KY上市']],
-    capital:{amount:'年收 NT$15–30億（估）', level:'low', label:'— 上市資訊揭露中'},
-    note:'2024年12月甫上市。越南廠為主要製造基地，服務在地食飲料客戶及出口。',
-    events:['2024/12  台灣上市（TWSE:8488）'],
-    verifyLinks:[{label:'TWSE 吉源上市公告', url:'https://www.twse.com.tw/staticFiles/news/event/8a8216d6937afbb90193a8f7bdcb0104.pdf', status:'found'}]},
+      {
+        id: 'trio-ky', group: 'tw', tag: 'ky', label: '三集瑞-KY',
+        name: '三集瑞國際科技股份有限公司 Trio-Tech International Ltd.',
+        nameEn: '塞席爾設籍 / 申請TWSE:6862 / 新北市中和（管理）',
+        regId: '申請中 6862',
+        facts: [['代表人', '林伙利（董事長）'], ['設籍', '塞席爾'],
+        ['申請上市', '2026年申請台灣上市（6862）'], ['資本', 'NT$4.4億'],
+        ['年收估', 'NT$20億（2025年估）'], ['產業', 'AI電感元件、車用電感'],
+        ['家族結構', '林伙利家族，1990年創立']],
+        capital: { amount: '年收 ~NT$20億', level: 'medium', label: '≈ 法說會估計' },
+        note: 'AI電感搭上伺服器與車用趨勢。塞席爾KY離岸架構，越南廠為近1–2年最新佈局，環金鎖定重點。',
+        events: ['1990  集團成立', '2025  越南廠動土（32條自動化線）', '2026  申請台灣上市（6862）'],
+        verifyLinks: [{ label: 'TWSE 三集瑞上市資訊', url: 'https://www.twse.com.tw/market_insights/zh/detail/8a8216d69236c2e30192b231d53f0224', status: 'found' }]
+      },
 
-  { id:'jy-vn', group:'vn', tag:'ky', label:'吉源越南',
-    name:'Jiyuan Packaging Vietnam Co., Ltd.（吉源越南）',
-    nameEn:'越南（北部或南部工業區）',
-    regId:'VN・待核實',
-    facts:[['成立','約2018–2020年'],['產業','馬口鐵罐、鋁罐'],['持股','吉源-KY 100%']],
-    capital:{amount:'未公開', level:'low', label:'— 集入合併報表'},
-    note:'吉源越南製造核心據點。', events:[],
-    verifyLinks:[]},
+      {
+        id: 'trio-vn', group: 'vn', tag: 'ky', isNew: true, label: '三集瑞越南',
+        name: '三集瑞越南製造廠（2025年動土，籌建中）',
+        nameEn: '越南（確切省份未公告）',
+        regId: 'VN・籌建中',
+        facts: [['成立', '2025年動土，2026年底預計量產'], ['產業', 'AI電感、車用電感（32條自動化線）'], ['持股', '三集瑞-KY 100%']],
+        capital: { amount: '投資總額未公開', level: 'low', label: '— 法說會未揭露' },
+        note: '⚡ 近1–2年越南新設廠，32條自動化線預計2026年底量產。',
+        events: ['2025  越南廠正式動土', '2026 Q4  預計量產'],
+        verifyLinks: []
+      },
 
-  // ── 上市/上櫃公司投資方（非KY架構）──────────
+      {
+        id: 'jy-ky', group: 'tw', tag: 'ky', label: '吉源-KY',
+        name: '吉源控股股份有限公司 Jiyuan Packaging Holdings Ltd.',
+        nameEn: '開曼群島設籍 / TWSE:8488 / 2024年12月上市',
+        regId: 'TWSE 8488',
+        facts: [['設籍', '開曼群島'], ['台灣上市', '2024年12月（TWSE:8488）'],
+        ['資本', 'NT$2.5億（估）'], ['產業', '馬口鐵罐、鋁罐包裝容器'],
+        ['家族結構', '家族企業，2024年底KY上市']],
+        capital: { amount: '年收 NT$15–30億（估）', level: 'low', label: '— 上市資訊揭露中' },
+        note: '2024年12月甫上市。越南廠為主要製造基地，服務在地食飲料客戶及出口。',
+        events: ['2024/12  台灣上市（TWSE:8488）'],
+        verifyLinks: [{ label: 'TWSE 吉源上市公告', url: 'https://www.twse.com.tw/staticFiles/news/event/8a8216d6937afbb90193a8f7bdcb0104.pdf', status: 'found' }]
+      },
 
-  { id:'welldone', group:'tw', tag:'ky', listed:true, label:'統振',
-    name:'統振股份有限公司 Welldone Corp.',
-    nameEn:'TWSE:6170（上櫃） / 台北市 — 統編 12135600',
-    regId:'統編 12135600',
-    facts:[['代表人','陳敦仁（董事長兼總經理）'],
-           ['上市','TWSE:6170（2002年上櫃）'],
-           ['集團歷史','陳敦仁帶領，41年'],
-           ['起家業務','電信預付卡、3C通路'],
-           ['能源事業','統達能源（原100%持股，2020讓給達方電子）、達振能源（已讓股給錸寶科技）'],
-           ['現主業','移工匯款（外籍移工金融科技）、電信小額付費、機場通路'],
-           ['移工匯兌','2021年取得外籍移工國外小額匯兌業務許可']],
-    capital:{amount:'上櫃公司，年報可查', level:'high', label:'✓ MOPS公開財報（6170）'},
-    note:'統振集團是統達能源的創始母公司，2020年讓出統達控制權給達方電子。集團另持有達振能源（2022年讓多數股給錸寶科技）。<b>陳敦仁同時擔任統達能源及達振能源董事長</b>，形成統振-達方-統達的三角投資結構。統振現轉型為移工金融科技，仍持有統達少數股。',
-    events:['2002  統振上櫃（TWSE:6170）','2010/9  統達能源設立（分割自達振能源）','2020  讓統達能源控制權給達方電子（保留少數股）','2022  讓達振能源多數股給錸寶科技'],
-    verifyLinks:[
-      {label:'MOPS 6170 統振', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=6170', status:'found'},
-      {label:'統振集團沿革', url:'https://www.welldone.com.tw/zh-tw/about_milestone.php', status:'found'},
-    ]},
+      {
+        id: 'jy-vn', group: 'vn', tag: 'ky', label: '吉源越南',
+        name: 'Jiyuan Packaging Vietnam Co., Ltd.（吉源越南）',
+        nameEn: '越南（北部或南部工業區）',
+        regId: 'VN・待核實',
+        facts: [['成立', '約2018–2020年'], ['產業', '馬口鐵罐、鋁罐'], ['持股', '吉源-KY 100%']],
+        capital: { amount: '未公開', level: 'low', label: '— 集入合併報表' },
+        note: '吉源越南製造核心據點。', events: [],
+        verifyLinks: []
+      },
 
-  { id:'dajhen', group:'tw', tag:'sme', label:'達振能源',
-    name:'達振能源股份有限公司 Dajhen Energy Corp.',
-    nameEn:'新北市（統振集團起家，現錸寶科技持股50%+）',
-    regId:'未公開統編',
-    facts:[['集團淵源','統振集團旗下（陳敦仁原任董事長）'],
-           ['現大股東','錸寶科技（2022年起持股50%以上）'],
-           ['核心業務','高功率電池模組、3C電池模組、UPS不斷電電池'],
-           ['重要客戶','台積電不斷電系統（UPS）電池模組供應商'],
-           ['雲端客群','美系網路大廠（家庭監控裝置電池模組訂單）'],
-           ['關係人','統達能源（同出統振集團，業務互補）']],
-    capital:{amount:'未上市（錸寶科技合併報表）', level:'medium', label:'錸寶科技年報（4994）可查'},
-    note:'達振能源與統達能源同出統振集團，達振主攻<b>台積電廠區UPS不斷電電池模組</b>及美系雲端大廠電池，2022年錸寶科技（TWSE:4994，PMOLED面板廠轉型）以NT$1.7億取得50%+股權。統達則專注E-bike，兩公司技術互補。',
-    events:['2008  達振能源成立（統振集團）','2011  統達能源從達振分割獨立','2022  錸寶科技投資NT$1.7億取得達振50%+股份'],
-    verifyLinks:[
-      {label:'今周刊-錸寶達振2022', url:'https://www.businesstoday.com.tw/article/category/183015/post/202209140010/', status:'found'},
-      {label:'MoneyDJ-錸寶加碼達振', url:'https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=c314385a-815b-43bd-8bee-4b7223dda881', status:'found'},
-    ]},
+      // ── 上市/上櫃公司投資方（非KY架構）──────────
 
-  { id:'darfon', group:'tw', tag:'ky', listed:true, label:'達方電子',
-    name:'達方電子股份有限公司 Darfon Electronics Corp.',
-    nameEn:'TWSE:8163 / 新北市汐止區 — 統編 16081507',
-    regId:'統編 16081507',
-    facts:[['代表人','蘇開建（董事長）'],
-           ['上市','TWSE 8163（2004年上市）'],
-           ['產業','IT周邊（鍵盤）→ 綠能轉型：E-bike電池/電控/車架'],
-           ['旗下品牌','BESV電動自行車（進入歐洲/日本高階市場）'],
-           ['統達能源','2020年9月取得62.9%股份，金額上限NT$4.1億'],
-           ['越南佈局','車架廠（世同金屬合作）+ 電池廠（2024中完工）+ 整車組裝廠年底完工，目標年產百萬台']],
-    capital:{amount:'上市公司，年報可查', level:'high', label:'✓ MOPS公開財報（8163）'},
-    note:'達方電子原為全球前三大筆電鍵盤供應商，轉型電動自行車三電系統（電池/電控/電源）。<b>2020年9月以不超過NT$4.1億取得統達能源62.9%股份</b>，成為最大股東，統達越南廠由此取得集團資源。越南三廠整合後，形成E-bike設計→電池→車架→組裝一條龍。',
-    events:['2004  達方電子台灣上市（TWSE:8163）','2015  推出BESV品牌','2020/9  取得統達能源62.9%股份（上限NT$4.1億）','2024  越南電池廠完工，三廠整合年產能目標百萬台'],
-    verifyLinks:[
-      {label:'MOPS 8163 達方電子', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=8163', status:'found'},
-      {label:'數位時代-達方併購統達', url:'https://www.bnext.com.tw/article/58742/darfon-htenergy-e-bike', status:'found'},
-    ]},
+      {
+        id: 'welldone', group: 'tw', tag: 'ky', listed: true, label: '統振',
+        name: '統振股份有限公司 Welldone Corp.',
+        nameEn: 'TWSE:6170（上櫃） / 台北市 — 統編 12135600',
+        regId: '統編 12135600',
+        facts: [['代表人', '陳敦仁（董事長兼總經理）'],
+        ['上市', 'TWSE:6170（2002年上櫃）'],
+        ['集團歷史', '陳敦仁帶領，41年'],
+        ['起家業務', '電信預付卡、3C通路'],
+        ['能源事業', '統達能源（原100%持股，2020讓給達方電子）、達振能源（已讓股給錸寶科技）'],
+        ['現主業', '移工匯款（外籍移工金融科技）、電信小額付費、機場通路'],
+        ['移工匯兌', '2021年取得外籍移工國外小額匯兌業務許可']],
+        capital: { amount: '上櫃公司，年報可查', level: 'high', label: '✓ MOPS公開財報（6170）' },
+        note: '統振集團是統達能源的創始母公司，2020年讓出統達控制權給達方電子。集團另持有達振能源（2022年讓多數股給錸寶科技）。<b>陳敦仁同時擔任統達能源及達振能源董事長</b>，形成統振-達方-統達的三角投資結構。統振現轉型為移工金融科技，仍持有統達少數股。',
+        events: ['2002  統振上櫃（TWSE:6170）', '2010/9  統達能源設立（分割自達振能源）', '2020  讓統達能源控制權給達方電子（保留少數股）', '2022  讓達振能源多數股給錸寶科技'],
+        verifyLinks: [
+          { label: 'MOPS 6170 統振', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=6170', status: 'found' },
+          { label: '統振集團沿革', url: 'https://www.welldone.com.tw/zh-tw/about_milestone.php', status: 'found' },
+        ]
+      },
 
-  // ── 未上市中小台商 ──────────────────────
+      {
+        id: 'dajhen', group: 'tw', tag: 'sme', label: '達振能源',
+        name: '達振能源股份有限公司 Dajhen Energy Corp.',
+        nameEn: '新北市（統振集團起家，現錸寶科技持股50%+）',
+        regId: '未公開統編',
+        facts: [['集團淵源', '統振集團旗下（陳敦仁原任董事長）'],
+        ['現大股東', '錸寶科技（2022年起持股50%以上）'],
+        ['核心業務', '高功率電池模組、3C電池模組、UPS不斷電電池'],
+        ['重要客戶', '台積電不斷電系統（UPS）電池模組供應商'],
+        ['雲端客群', '美系網路大廠（家庭監控裝置電池模組訂單）'],
+        ['關係人', '統達能源（同出統振集團，業務互補）']],
+        capital: { amount: '未上市（錸寶科技合併報表）', level: 'medium', label: '錸寶科技年報（4994）可查' },
+        note: '達振能源與統達能源同出統振集團，達振主攻<b>台積電廠區UPS不斷電電池模組</b>及美系雲端大廠電池，2022年錸寶科技（TWSE:4994，PMOLED面板廠轉型）以NT$1.7億取得50%+股權。統達則專注E-bike，兩公司技術互補。',
+        events: ['2008  達振能源成立（統振集團）', '2011  統達能源從達振分割獨立', '2022  錸寶科技投資NT$1.7億取得達振50%+股份'],
+        verifyLinks: [
+          { label: '今周刊-錸寶達振2022', url: 'https://www.businesstoday.com.tw/article/category/183015/post/202209140010/', status: 'found' },
+          { label: 'MoneyDJ-錸寶加碼達振', url: 'https://www.moneydj.com/kmdj/news/newsviewer.aspx?a=c314385a-815b-43bd-8bee-4b7223dda881', status: 'found' },
+        ]
+      },
 
-  { id:'tw-ampacs', group:'tw', tag:'sme', listed:true, label:'安普新',
-    name:'安普新股份有限公司 AMPACS Co., Ltd.',
-    nameEn:'台北市南港區三重路19之3號3樓 — 統編16540496 — TWSE:6743（2020年上市）',
-    regId:'統編 16540496',
-    facts:[['代表人','黃常青（董事長兼總經理）'],['成立','1998年7月2日（民國87年）'],
-           ['地址','台北市南港區三重路19之3號3樓'],['台灣上市','2020年（TWSE:6743）'],
-           ['資本','NT$15億（實收資本額，g0v確認）'],
-           ['產業','被動元件（電容、電感）、車用/工控電子']],
-    capital:{amount:'年收 NT$10–20億（估）', level:'medium', label:'✓ MOPS公開財報可查'},
-    note:'2020年上市，嚴格已脫離環金「未公開發行」定義，但<b>越南廠2019年設立時尚未上市</b>，保留作環金升格軌跡典型案例。黃常青家族掌控，典型電子中小企業。',
-    events:['1998  台灣成立','2019  越南廠取得投資登記','2020  台灣TWSE上市（6743）'],
-    verifyLinks:[
-      {label:'MOPS 安普新（TWSE:6743）', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=6743', status:'found'},
-      {label:'twincn 統編16540496', url:'https://www.twincn.com/item.aspx?no=16540496', status:'found'},
-    ]},
+      {
+        id: 'darfon', group: 'tw', tag: 'ky', listed: true, label: '達方電子',
+        name: '達方電子股份有限公司 Darfon Electronics Corp.',
+        nameEn: 'TWSE:8163 / 新北市汐止區 — 統編 16081507',
+        regId: '統編 16081507',
+        facts: [['代表人', '蘇開建（董事長）'],
+        ['上市', 'TWSE 8163（2004年上市）'],
+        ['產業', 'IT周邊（鍵盤）→ 綠能轉型：E-bike電池/電控/車架'],
+        ['旗下品牌', 'BESV電動自行車（進入歐洲/日本高階市場）'],
+        ['統達能源', '2020年9月取得62.9%股份，金額上限NT$4.1億'],
+        ['越南佈局', '車架廠（世同金屬合作）+ 電池廠（2024中完工）+ 整車組裝廠年底完工，目標年產百萬台']],
+        capital: { amount: '上市公司，年報可查', level: 'high', label: '✓ MOPS公開財報（8163）' },
+        note: '達方電子原為全球前三大筆電鍵盤供應商，轉型電動自行車三電系統（電池/電控/電源）。<b>2020年9月以不超過NT$4.1億取得統達能源62.9%股份</b>，成為最大股東，統達越南廠由此取得集團資源。越南三廠整合後，形成E-bike設計→電池→車架→組裝一條龍。',
+        events: ['2004  達方電子台灣上市（TWSE:8163）', '2015  推出BESV品牌', '2020/9  取得統達能源62.9%股份（上限NT$4.1億）', '2024  越南電池廠完工，三廠整合年產能目標百萬台'],
+        verifyLinks: [
+          { label: 'MOPS 8163 達方電子', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=8163', status: 'found' },
+          { label: '數位時代-達方併購統達', url: 'https://www.bnext.com.tw/article/58742/darfon-htenergy-e-bike', status: 'found' },
+        ]
+      },
 
-  { id:'vn-ampacs', group:'vn', tag:'sme', label:'AMPACS越南',
-    name:'AMPACS International Co., Ltd.（Công ty TNHH AMPACS International）',
-    nameEn:'越南平陽省（Bình Dương，MST前兩碼37確認） — MST 3702768704',
-    regId:'MST 3702768704',
-    facts:[['稅號','MST 3702768704（爬蟲確認）'],['公司型態','台灣母公司持股'],
-           ['法人代表','黃常青或指派代表'],['成立','2019年前後（確切日期待查）'],
-           ['產業','被動元件（電容、電感）製造']],
-    capital:{amount:'未公開（集入合併報表）', level:'low', label:'✓ MST由爬蟲確認，省份由MST碼推定'},
-    note:'2019年越南廠設立，2020年母公司即上市，為典型「越南布局→台灣上市」路徑案例。越南端 MST 3702768704 已由爬蟲確認（masothue /Search/ 端點）；MST前兩碼37對應<b>平陽省（Bình Dương）</b>，省份已確認。另查到 MST 3702901191（Nộp Hộ NTNN）為代繳稅務分支，為正常外資結構。',
-    events:['2019  越南廠成立','2020  台灣母公司TWSE上市'],
-    verifyLinks:[
-      {label:'masothue MST 3702768704', url:'https://masothue.com/Search/?type=auto&q=ampacs+international', status:'found'},
-      {label:'安普新年報（MOPS）', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=6743', status:'found'},
-    ]},
+      // ── 未上市中小台商 ──────────────────────
 
-  { id:'tw-bueno', group:'tw', tag:'sme', label:'和正豐科技',
-    name:'和正豐科技股份有限公司 Bueno Technology Co., Ltd.',
-    nameEn:'臺南市官田區工業路17號 — 統編69501752 — buenoeco.com',
-    regId:'統編 69501752',
-    facts:[['代表人','陳昆漢（董事長）'],['創立','1977年3月18日（民國66年）'],
-           ['地址','臺南市官田區工業路17號（登記機關：台南市政府）'],
-           ['董監事','陳昆漢、陳錦礎、陳昆祥、陳郭春桂（陳氏家族）'],
-           ['資本額','NT$3.31億（實收）'],
-           ['產業','閥類製造業（CA02050）、工業用塑膠製品、強化塑膠製品'],
-           ['官網','zh-tw.buenoeco.com']],
-    capital:{amount:'NT$3.31億（實收資本）', level:'high', label:'✓ g0v公民資料庫 / 爬蟲自動確認'},
-    note:'台南官田老字號家族企業（陳氏家族三代），主業精密閥件（PFA裡襯球閥/隔膜閥/控制閥），是半導體晶圓廠、製藥廠、石化廠高純度流體管路的關鍵供應商。<b>PFA閥件在晶圓廠是必備耗材</b>（化學品輸送、蝕刻液管路）。除台越兩廠外，並設上海、印尼、泰國廠，形成多國製造網絡，越南廠為東南亞製造核心。<b>統編69501752由爬蟲自動查詢 g0v 資料庫確認。</b>',
-    events:['1969  創立（初期精密鑄造）','1977/3/18  台灣公司正式登記（台南官田）','2007/4/24  越南同奈廠成立（仁澤3工業區）','佈局  上海＋印尼＋泰國多國製造'],
-    verifyLinks:[
-      {label:'g0v 統編69501752', url:'https://company.g0v.ronny.tw/id/69501752', status:'found'},
-      {label:'twincn 統編69501752', url:'https://www.twincn.com/item.aspx?no=69501752', status:'found'},
-      {label:'buenoeco.com', url:'https://zh-tw.buenoeco.com/company-profile', status:'found'},
-    ]},
+      {
+        id: 'tw-ampacs', group: 'tw', tag: 'sme', listed: true, label: '安普新',
+        name: '安普新股份有限公司 AMPACS Co., Ltd.',
+        nameEn: '台北市南港區三重路19之3號3樓 — 統編16540496 — TWSE:6743（2020年上市）',
+        regId: '統編 16540496',
+        facts: [['代表人', '黃常青（董事長兼總經理）'], ['成立', '1998年7月2日（民國87年）'],
+        ['地址', '台北市南港區三重路19之3號3樓'], ['台灣上市', '2020年（TWSE:6743）'],
+        ['資本', 'NT$15億（實收資本額，g0v確認）'],
+        ['產業', '被動元件（電容、電感）、車用/工控電子']],
+        capital: { amount: '年收 NT$10–20億（估）', level: 'medium', label: '✓ MOPS公開財報可查' },
+        note: '2020年上市，嚴格已脫離環金「未公開發行」定義，但<b>越南廠2019年設立時尚未上市</b>，保留作環金升格軌跡典型案例。黃常青家族掌控，典型電子中小企業。',
+        events: ['1998  台灣成立', '2019  越南廠取得投資登記', '2020  台灣TWSE上市（6743）'],
+        verifyLinks: [
+          { label: 'MOPS 安普新（TWSE:6743）', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=6743', status: 'found' },
+          { label: 'twincn 統編16540496', url: 'https://www.twincn.com/item.aspx?no=16540496', status: 'found' },
+        ]
+      },
 
-  { id:'vn-bueno', group:'vn', tag:'sme', label:'和正豐越南',
-    name:'和正豐科技(越南)有限公司 Bueno Technology Co., Ltd. (VN)',
-    nameEn:'同奈省仁澤三工業區（二期）25B路',
-    regId:'MST 3600882782',
-    facts:[['地址','同奈省仁澤三工業區（三期）05號道路（官網確認）'],
-           ['公司型態','單一成員有限公司（台灣母公司100%持有）'],
-           ['法人代表','CHEN, KUAN-HAN（陳昆漢）'],
-           ['成立','2007年4月24日，已營運19年'],
-           ['產業','PFA精密閥件、球閥、隔膜閥，供半導體/製藥/石化業'],
-           ['電話','84-251-3569-311（官網）'],
-           ['上游客群','晶圓廠（化學品管路）、製藥廠（高純度流體）、石化廠']],
-    capital:{amount:'台灣母公司未公開', level:'low', label:'⚠ 越南端已驗證'},
-    note:'越南端MST 3600882782已驗證，確認為台灣單一成員100%持股。法人代表陳昆漢與台灣官網一致。地址由 buenoeco.com 官網確認為同奈仁澤3工業區05號道路。',
-    events:['2007/4/24  越南廠取得投資登記證'],
-    verifyLinks:[{label:'masothue MST 3600882782', url:'https://masothue.com/3600882782-bueno-technology-co-ltd', status:'found'}]},
+      {
+        id: 'vn-ampacs', group: 'vn', tag: 'sme', label: 'AMPACS越南',
+        name: 'AMPACS International Co., Ltd.（Công ty TNHH AMPACS International）',
+        nameEn: '越南平陽省（Bình Dương，MST前兩碼37確認） — MST 3702768704',
+        regId: 'MST 3702768704',
+        facts: [['稅號', 'MST 3702768704（爬蟲確認）'], ['公司型態', '台灣母公司持股'],
+        ['法人代表', '黃常青或指派代表'], ['成立', '2019年前後（確切日期待查）'],
+        ['產業', '被動元件（電容、電感）製造']],
+        capital: { amount: '未公開（集入合併報表）', level: 'low', label: '✓ MST由爬蟲確認，省份由MST碼推定' },
+        note: '2019年越南廠設立，2020年母公司即上市，為典型「越南布局→台灣上市」路徑案例。越南端 MST 3702768704 已由爬蟲確認（masothue /Search/ 端點）；MST前兩碼37對應<b>平陽省（Bình Dương）</b>，省份已確認。另查到 MST 3702901191（Nộp Hộ NTNN）為代繳稅務分支，為正常外資結構。',
+        events: ['2019  越南廠成立', '2020  台灣母公司TWSE上市'],
+        verifyLinks: [
+          { label: 'masothue MST 3702768704', url: 'https://masothue.com/Search/?type=auto&q=ampacs+international', status: 'found' },
+          { label: '安普新年報（MOPS）', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=6743', status: 'found' },
+        ]
+      },
 
-  { id:'tw-charterleader', group:'tw', tag:'sme', label:'Charterleader',
-    name:'Charterleader Electronics Group（鑫宏安電子集團）',
-    nameEn:'台灣台北（統一編號待查） — IC燒錄 / RF測試 / 測試治具',
-    regId:'TW・統編未查到',
-    facts:[['代表人','高捷成（KAO, CHIEH-SHENG，越南廠法人代表）'],
-           ['台灣總部','台北（Taipei，LinkedIn確認）'],
-           ['其他據點','蘇州廠、東莞廠（中國兩地）+ 越南北寧廠'],
-           ['產業','IC程式燒錄、RF測試屏蔽箱、EMI屏蔽、製造測試治具'],
-           ['下游客群','消費電子EMS廠、三星北寧供應鏈（北寧省設廠佐證）'],
-           ['爬蟲查詢','g0v搜「charter/鑫宏安/高捷成/承達/昌德/群達/豐達/卓越」均無台灣法人'],
-           ['推測結構','高捷成個人或香港SPV直持越南TNHH，無獨立台灣法人實體']],
-    capital:{amount:'未上市，規模未公開', level:'low', label:'— 需手動查 findbiz'},
-    note:'Charterleader Electronics Group（鑫宏安電子集團）台北總部已由LinkedIn確認，蘇州/東莞/越南北寧三地設廠。IC燒錄與RF測試屏蔽盒是半導體後段封測與消費電子量產必要工序，<b>北寧省分公司直接服務三星越南供應鏈</b>（三星北寧廠為越南最大出口商）。台灣端爬蟲多組關鍵字均查無登記法人，推測高捷成以個人身份或第三地SPV直持越南TNHH。',
-    events:['設立  台北總部 + 蘇州、東莞廠（年份未公開）','2019/5/29  越南河內主體成立（MST 0108763399）','2019/10/25  北寧省分公司設立（靠近三星供應鏈工業區）'],
-    verifyLinks:[
-      {label:'findbiz 人工搜「高捷成」（代表人）', url:'https://findbiz.nat.gov.tw/fbs/view/showBizList.do?request_locale=zh_TW&fKey=%E9%AB%98%E6%8D%B7%E6%88%90&busmType=all&cmpyType=all&branchType=all&isShowBranch=N&notnullBusmType=Y&notnullCmpyType=Y&notnullBranchType=Y', status:'pending'},
-      {label:'g0v 搜鑫宏安', url:'https://company.g0v.ronny.tw/#query=%E9%91%AB%E5%AE%8F%E5%AE%89', status:'pending'},
-      {label:'LinkedIn Charterleader Electronics Group', url:'https://www.linkedin.com/company/charterleader-electronics-group', status:'found'},
-      {label:'masothue CLT越南 MST 0108763399', url:'https://masothue.com/0108763399-cong-ty-tnhh-charter-leader-technology', status:'found'},
-    ]},
+      {
+        id: 'tw-bueno', group: 'tw', tag: 'sme', label: '和正豐科技',
+        name: '和正豐科技股份有限公司 Bueno Technology Co., Ltd.',
+        nameEn: '臺南市官田區工業路17號 — 統編69501752 — buenoeco.com',
+        regId: '統編 69501752',
+        facts: [['代表人', '陳昆漢（董事長）'], ['創立', '1977年3月18日（民國66年）'],
+        ['地址', '臺南市官田區工業路17號（登記機關：台南市政府）'],
+        ['董監事', '陳昆漢、陳錦礎、陳昆祥、陳郭春桂（陳氏家族）'],
+        ['資本額', 'NT$3.31億（實收）'],
+        ['產業', '閥類製造業（CA02050）、工業用塑膠製品、強化塑膠製品'],
+        ['官網', 'zh-tw.buenoeco.com']],
+        capital: { amount: 'NT$3.31億（實收資本）', level: 'high', label: '✓ g0v公民資料庫 / 爬蟲自動確認' },
+        note: '台南官田老字號家族企業（陳氏家族三代），主業精密閥件（PFA裡襯球閥/隔膜閥/控制閥），是半導體晶圓廠、製藥廠、石化廠高純度流體管路的關鍵供應商。<b>PFA閥件在晶圓廠是必備耗材</b>（化學品輸送、蝕刻液管路）。除台越兩廠外，並設上海、印尼、泰國廠，形成多國製造網絡，越南廠為東南亞製造核心。<b>統編69501752由爬蟲自動查詢 g0v 資料庫確認。</b>',
+        events: ['1969  創立（初期精密鑄造）', '1977/3/18  台灣公司正式登記（台南官田）', '2007/4/24  越南同奈廠成立（仁澤3工業區）', '佈局  上海＋印尼＋泰國多國製造'],
+        verifyLinks: [
+          { label: 'g0v 統編69501752', url: 'https://company.g0v.ronny.tw/id/69501752', status: 'found' },
+          { label: 'twincn 統編69501752', url: 'https://www.twincn.com/item.aspx?no=69501752', status: 'found' },
+          { label: 'buenoeco.com', url: 'https://zh-tw.buenoeco.com/company-profile', status: 'found' },
+        ]
+      },
 
-  { id:'vn-charterleader', group:'vn', tag:'sme', label:'CLT河內',
-    name:'Charter Leader Technology Co., Ltd.（河內主體）',
-    nameEn:'河內市青春郡 Licogi 13 大樓12樓 — 登記主體',
-    regId:'MST 0108763399',
-    facts:[['法人代表','KAO, CHIEH-SHENG（高捷成）'],
-           ['成立','2019年5月29日'],
-           ['登記地址','河內市青春郡Licogi 13大樓12樓'],
-           ['公司型態','單一成員有限公司（TNHH）'],
-           ['產業','IC程式燒錄、RF測試屏蔽盒、EMI屏蔽、製造測試治具'],
-           ['集團角色','集團越南法人總登記實體，北寧廠掛此稅號運營']],
-    capital:{amount:'台灣母公司未公開', level:'low', label:'⚠ 越南端已驗證'},
-    note:'CLT 越南集團登記主體，實際業務重心在北寧省（三星供應鏈所在地），北寧另設獨立稅號法人（MST 2301236034）。高捷成為唯一法人代表。',
-    events:['2019/5/29  河內主體成立（MST 0108763399）','2019/10/25  北寧代表處設立'],
-    verifyLinks:[
-      {label:'masothue MST 0108763399', url:'https://masothue.com/0108763399-charter-leader-technology-co-ltd', status:'found'},
-      {label:'Volza 進出口紀錄', url:'https://www.volza.com/company-profile/cong-ty-tnhh-charter-leader-technology-31324639/import/', status:'found'},
-    ]},
+      {
+        id: 'vn-bueno', group: 'vn', tag: 'sme', label: '和正豐越南',
+        name: '和正豐科技(越南)有限公司 Bueno Technology Co., Ltd. (VN)',
+        nameEn: '同奈省仁澤三工業區（二期）25B路',
+        regId: 'MST 3600882782',
+        facts: [['地址', '同奈省仁澤三工業區（三期）05號道路（官網確認）'],
+        ['公司型態', '單一成員有限公司（台灣母公司100%持有）'],
+        ['法人代表', 'CHEN, KUAN-HAN（陳昆漢）'],
+        ['成立', '2007年4月24日，已營運19年'],
+        ['產業', 'PFA精密閥件、球閥、隔膜閥，供半導體/製藥/石化業'],
+        ['電話', '84-251-3569-311（官網）'],
+        ['上游客群', '晶圓廠（化學品管路）、製藥廠（高純度流體）、石化廠']],
+        capital: { amount: '台灣母公司未公開', level: 'low', label: '⚠ 越南端已驗證' },
+        note: '越南端MST 3600882782已驗證，確認為台灣單一成員100%持股。法人代表陳昆漢與台灣官網一致。地址由 buenoeco.com 官網確認為同奈仁澤3工業區05號道路。',
+        events: ['2007/4/24  越南廠取得投資登記證'],
+        verifyLinks: [{ label: 'masothue MST 3600882782', url: 'https://masothue.com/3600882782-bueno-technology-co-ltd', status: 'found' }]
+      },
 
-  { id:'vn-clt-bn', group:'vn', tag:'sme', label:'CLT北寧',
-    name:'Charter Leader Technology Co., Ltd.（北寧獨立法人）',
-    nameEn:'北寧市Đại Phúc坊青年路47號 — 三星供應鏈核心區',
-    regId:'MST 2301236034',
-    facts:[['法人代表','KAO, CHIEH-SHENG（高捷成）'],
-           ['地址','北寧市Đại Phúc坊青年路47號（Võ Cường坊亦有登記）'],
-           ['代表處','MST 0108763399-001，TSAI MIN-HWA（蔡明華），北寧市Ninh Xá坊'],
-           ['成立','2019年10月（與河內主體同年）'],
-           ['產業','IC程式燒錄、RF測試屏蔽盒、製造測試治具'],
-           ['地理優勢','三星電子越南（2300325764）、三星Display、三星SDI均在北寧省，70%三星供應商集中北寧'],
-           ['推測客群','三星北寧供應鏈（消費電子、手機PCB燒錄測試）']],
-    capital:{amount:'台灣母公司未公開', level:'low', label:'⚠ 越南端已驗證（獨立稅號）'},
-    note:'<b>CLT 在北寧省設立獨立稅號法人實體（非僅代表處）</b>，顯示北寧廠規模足以獨立報稅運營。北寧省聚集三星越南最大製造群（手機、顯示器、電池），IC燒錄/RF測試屏蔽為三星供應鏈量產必要工序，地理吻合度高。',
-    events:['2019/10  北寧獨立法人登記（MST 2301236034）','設廠  47 Thanh Nien Road, Dai Phuc Ward, Bac Ninh'],
-    verifyLinks:[
-      {label:'masothue MST 2301236034', url:'https://masothue.com/Search/?type=auto&q=2301236034', status:'found'},
-      {label:'doanhnghiep.biz MST 2301236034', url:'https://doanhnghiep.biz/2301236034-cong-ty-tnhh-charter-leader-technology-nop-thay', status:'found'},
-    ]},
+      {
+        id: 'tw-charterleader', group: 'tw', tag: 'sme', label: 'Charterleader',
+        name: 'Charterleader Electronics Group（鑫宏安電子集團）',
+        nameEn: '台灣台北（統一編號待查） — IC燒錄 / RF測試 / 測試治具',
+        regId: 'TW・統編未查到',
+        facts: [['代表人', '高捷成（KAO, CHIEH-SHENG，越南廠法人代表）'],
+        ['台灣總部', '台北（Taipei，LinkedIn確認）'],
+        ['其他據點', '蘇州廠、東莞廠（中國兩地）+ 越南北寧廠'],
+        ['產業', 'IC程式燒錄、RF測試屏蔽箱、EMI屏蔽、製造測試治具'],
+        ['下游客群', '消費電子EMS廠、三星北寧供應鏈（北寧省設廠佐證）'],
+        ['爬蟲查詢', 'g0v搜「charter/鑫宏安/高捷成/承達/昌德/群達/豐達/卓越」均無台灣法人'],
+        ['推測結構', '高捷成個人或香港SPV直持越南TNHH，無獨立台灣法人實體']],
+        capital: { amount: '未上市，規模未公開', level: 'low', label: '— 需手動查 findbiz' },
+        note: 'Charterleader Electronics Group（鑫宏安電子集團）台北總部已由LinkedIn確認，蘇州/東莞/越南北寧三地設廠。IC燒錄與RF測試屏蔽盒是半導體後段封測與消費電子量產必要工序，<b>北寧省分公司直接服務三星越南供應鏈</b>（三星北寧廠為越南最大出口商）。台灣端爬蟲多組關鍵字均查無登記法人，推測高捷成以個人身份或第三地SPV直持越南TNHH。',
+        events: ['設立  台北總部 + 蘇州、東莞廠（年份未公開）', '2019/5/29  越南河內主體成立（MST 0108763399）', '2019/10/25  北寧省分公司設立（靠近三星供應鏈工業區）'],
+        verifyLinks: [
+          { label: 'findbiz 人工搜「高捷成」（代表人）', url: 'https://findbiz.nat.gov.tw/fbs/view/showBizList.do?request_locale=zh_TW&fKey=%E9%AB%98%E6%8D%B7%E6%88%90&busmType=all&cmpyType=all&branchType=all&isShowBranch=N&notnullBusmType=Y&notnullCmpyType=Y&notnullBranchType=Y', status: 'pending' },
+          { label: 'g0v 搜鑫宏安', url: 'https://company.g0v.ronny.tw/#query=%E9%91%AB%E5%AE%8F%E5%AE%89', status: 'pending' },
+          { label: 'LinkedIn Charterleader Electronics Group', url: 'https://www.linkedin.com/company/charterleader-electronics-group', status: 'found' },
+          { label: 'masothue CLT越南 MST 0108763399', url: 'https://masothue.com/0108763399-cong-ty-tnhh-charter-leader-technology', status: 'found' },
+        ]
+      },
 
-  { id:'vn-shuncheng', group:'vn', tag:'sme', orphan:true, label:'順成工業',
-    name:'順成工業(越南)有限公司 Shun Cheng Technology Industry Co., Ltd. (VN)',
-    nameEn:'同奈省仁澤三工業區 — 台灣母公司待查',
-    regId:'MST 3600595756',
-    facts:[['地址','同奈省仁澤三工業區'],
-           ['公司型態','二人以上有限公司（多股東持股）'],
-           ['法人代表','BAI, XIANG JUN'],['負責人','楊憲文（YANG, HSIEN-WEN）'],
-           ['成立','2002年11月11日，已營運23年']],
-    capital:{amount:'台灣母公司未確認', level:'low', label:'⚠ 越南端已驗證，台灣端待查'},
-    note:'越南端MST 3600595756已驗證，確認設於同奈省仁澤三工業區，已穩定營運23年。台灣母公司無法透過搜尋引擎找到，需手動查詢商業司系統（以「楊憲文」或「順成工業」搜尋）。',
-    events:['2002/11/11  越南廠成立，同奈工業區'],
-    verifyLinks:[
-      {label:'findbiz 搜「楊憲文」（負責人）', url:'https://findbiz.nat.gov.tw/fbs/view/showBizList.do?request_locale=zh_TW&fKey=%E6%A5%8A%E6%86%B2%E6%96%87&busmType=all&cmpyType=all&branchType=all&isShowBranch=N&notnullBusmType=Y&notnullCmpyType=Y&notnullBranchType=Y', status:'pending'},
-      {label:'findbiz 搜「順成工業」', url:'https://findbiz.nat.gov.tw/fbs/view/showBizList.do?request_locale=zh_TW&fKey=%E9%A0%86%E6%88%90%E5%B7%A5%E6%A5%AD&busmType=all&cmpyType=all&branchType=all&isShowBranch=N&notnullBusmType=Y&notnullCmpyType=Y&notnullBranchType=Y', status:'pending'},
-      {label:'masothue MST 3600595756', url:'https://masothue.com/3600595756-shun-cheng-technology-industry-co-ltd', status:'found'},
-      {label:'同奈台商商會（會員名單）', url:'https://dongnaitw.com/member/', status:'pending'},
-    ]},
+      {
+        id: 'vn-charterleader', group: 'vn', tag: 'sme', label: 'CLT河內',
+        name: 'Charter Leader Technology Co., Ltd.（河內主體）',
+        nameEn: '河內市青春郡 Licogi 13 大樓12樓 — 登記主體',
+        regId: 'MST 0108763399',
+        facts: [['法人代表', 'KAO, CHIEH-SHENG（高捷成）'],
+        ['成立', '2019年5月29日'],
+        ['登記地址', '河內市青春郡Licogi 13大樓12樓'],
+        ['公司型態', '單一成員有限公司（TNHH）'],
+        ['產業', 'IC程式燒錄、RF測試屏蔽盒、EMI屏蔽、製造測試治具'],
+        ['集團角色', '集團越南法人總登記實體，北寧廠掛此稅號運營']],
+        capital: { amount: '台灣母公司未公開', level: 'low', label: '⚠ 越南端已驗證' },
+        note: 'CLT 越南集團登記主體，實際業務重心在北寧省（三星供應鏈所在地），北寧另設獨立稅號法人（MST 2301236034）。高捷成為唯一法人代表。',
+        events: ['2019/5/29  河內主體成立（MST 0108763399）', '2019/10/25  北寧代表處設立'],
+        verifyLinks: [
+          { label: 'masothue MST 0108763399', url: 'https://masothue.com/0108763399-charter-leader-technology-co-ltd', status: 'found' },
+          { label: 'Volza 進出口紀錄', url: 'https://www.volza.com/company-profile/cong-ty-tnhh-charter-leader-technology-31324639/import/', status: 'found' },
+        ]
+      },
 
-  { id:'tw-tdhitech', group:'tw', tag:'sme', label:'統達能源',
-    name:'統達能源股份有限公司 TD HiTech Energy Inc.',
-    nameEn:'新竹縣湖口鄉 — 統振集團 / 達方電子持股60%',
-    regId:'統編 53088877',
-    facts:[['代表人','蔡耀坤（TSAI, YAO-KUN）'],['成立','2010年9月1日'],
-           ['地址','新竹縣湖口鄉鳳山村鳳工路1號3樓（爬蟲確認）'],
-           ['母公司','達方電子（TWSE:8163）持股62.9%（2020/9，NT$4.1億）'],
-           ['創辦集團','統振集團（陳敦仁董事長，41年歷史）'],
-           ['主力產品','E-bike高功率電池模組、掃地機器人電池、小型儲能'],
-           ['下游客群','北美、歐洲主流E-bike品牌（OEM）；達方旗下BESV品牌（日/歐/美）'],
-           ['知名合作','日本Shimano（自行車傳動大廠）為達方集團客戶'],
-           ['日本通路','BESV × 蔦屋書店（日本最大連鎖書店）聯名推廣'],
-           ['合作歷史','Ultra Motor ODM合作（2008年起）'],
-           ['姊妹公司','達振能源（同出統振集團，供台積電UPS電池）'],
-           ['越南角色','達方越南三廠之電池核心廠，搭配車架廠（世同金屬）+整車組裝廠']],
-    capital:{amount:'未上市（達方電子合併報表）', level:'medium', label:'✓ 達方電子年報（8163）可查'},
-    note:'統達本身未上市，透過達方電子（上市，TWSE:8163）進入環金雙層結構。達方越南佈局以<b>統達電池廠為核心</b>，搭配世同金屬車架廠與整車組裝廠，2024年完成三廠整合，E-bike年產目標百萬台，出口北美/歐洲。越南廠2024年2月設立，<b>本次樣本中設立時間最短</b>，環金優先鎖定。',
-    events:['2008  與Ultra Motor開始ODM合作','2010/9  台灣成立（統振集團旗下）','2020/9  達方電子投資62.9%（NT$4.1億）','2024/2  越南同奈AMATA工業區廠取得投資登記（~580萬美元）','2024  達方越南三廠整合完成'],
-    verifyLinks:[
-      {label:'twincn 統編53088877', url:'https://www.twincn.com/item.aspx?no=53088877', status:'found'},
-      {label:'達方電子年報（MOPS）', url:'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=8462', status:'found'},
-    ]},
+      {
+        id: 'vn-clt-bn', group: 'vn', tag: 'sme', label: 'CLT北寧',
+        name: 'Charter Leader Technology Co., Ltd.（北寧獨立法人）',
+        nameEn: '北寧市Đại Phúc坊青年路47號 — 三星供應鏈核心區',
+        regId: 'MST 2301236034',
+        facts: [['法人代表', 'KAO, CHIEH-SHENG（高捷成）'],
+        ['地址', '北寧市Đại Phúc坊青年路47號（Võ Cường坊亦有登記）'],
+        ['代表處', 'MST 0108763399-001，TSAI MIN-HWA（蔡明華），北寧市Ninh Xá坊'],
+        ['成立', '2019年10月（與河內主體同年）'],
+        ['產業', 'IC程式燒錄、RF測試屏蔽盒、製造測試治具'],
+        ['地理優勢', '三星電子越南（2300325764）、三星Display、三星SDI均在北寧省，70%三星供應商集中北寧'],
+        ['推測客群', '三星北寧供應鏈（消費電子、手機PCB燒錄測試）']],
+        capital: { amount: '台灣母公司未公開', level: 'low', label: '⚠ 越南端已驗證（獨立稅號）' },
+        note: '<b>CLT 在北寧省設立獨立稅號法人實體（非僅代表處）</b>，顯示北寧廠規模足以獨立報稅運營。北寧省聚集三星越南最大製造群（手機、顯示器、電池），IC燒錄/RF測試屏蔽為三星供應鏈量產必要工序，地理吻合度高。',
+        events: ['2019/10  北寧獨立法人登記（MST 2301236034）', '設廠  47 Thanh Nien Road, Dai Phuc Ward, Bac Ninh'],
+        verifyLinks: [
+          { label: 'masothue MST 2301236034', url: 'https://masothue.com/Search/?type=auto&q=2301236034', status: 'found' },
+          { label: 'doanhnghiep.biz MST 2301236034', url: 'https://doanhnghiep.biz/2301236034-cong-ty-tnhh-charter-leader-technology-nop-thay', status: 'found' },
+        ]
+      },
 
-  { id:'vn-tdhitech', group:'vn', tag:'sme', isNew:true, label:'TD Hitech',
-    name:'TD HITECH ENERGY VIETNAM CO., LTD',
-    nameEn:'同奈省仁澤縣紡織工業區（AMATA），Lot A204-207',
-    regId:'MST 3603949509',
-    facts:[['地址','同奈省仁澤縣紡織工業區（KCN Dệt May），Lot A204-205-206-207，4號廠房'],
-           ['公司型態','單一成員有限公司（100%持有）'],
-           ['法人代表','TSAI, YAO-KUN（蔡耀坤）— 同時擔任 Darfon Vietnam 法人代表'],
-           ['成立','2024年2月21日，僅營運約2年'],
-           ['產業','鋰電池/電池模組、電動自行車充電器（批發+製造）'],
-           ['投資金額','約580萬美元（FDI，2024年2月）'],
-           ['進口來源','台灣、中國、日本（60批貨，masothue進出口記錄）'],
-           ['集團關係','蔡耀坤同時任 Darfon Vietnam 代表 → 確認屬達方集團越南整合體系']],
-    capital:{amount:'約580萬美元（vốn đầu tư）', level:'high', label:'✓ 投資登記證已驗證'},
-    note:'⚡ <b>本次樣本中設立時間最短（2024年2月）</b>，完全符合環金「近1–2年新設越南公司」優先條件。法人代表蔡耀坤與台灣母公司同名，且同時擔任達方越南（鍵盤廠）代表，確認屬<b>達方集團越南整合三廠體系</b>：Darfon Vietnam（鍵盤/組裝）+ TD Hitech（電池）+ 世同車架廠。',
-    events:['2024/2/21  取得越南投資登記證（~580萬美元）','2024  進駐同奈AMATA工業區','進口  台灣/中國/日本電池零件（60批，含電池芯）'],
-    verifyLinks:[
-      {label:'masothue MST 3603949509', url:'https://masothue.com/3603949509-td-hitech-energy-vietnam-co-ltd', status:'found'},
-      {label:'thetradevision 進出口', url:'https://www.thetradevision.com/global/supplier/td-hitech-energy-vietnam-company-ltd/vietnam/1476205', status:'found'},
-    ]},
+      {
+        id: 'vn-shuncheng', group: 'vn', tag: 'sme', orphan: true, label: '順成工業',
+        name: '順成工業(越南)有限公司 Shun Cheng Technology Industry Co., Ltd. (VN)',
+        nameEn: '同奈省仁澤三工業區 — 台灣母公司待查',
+        regId: 'MST 3600595756',
+        facts: [['地址', '同奈省仁澤三工業區'],
+        ['公司型態', '二人以上有限公司（多股東持股）'],
+        ['法人代表', 'BAI, XIANG JUN'], ['負責人', '楊憲文（YANG, HSIEN-WEN）'],
+        ['成立', '2002年11月11日，已營運23年']],
+        capital: { amount: '台灣母公司未確認', level: 'low', label: '⚠ 越南端已驗證，台灣端待查' },
+        note: '越南端MST 3600595756已驗證，確認設於同奈省仁澤三工業區，已穩定營運23年。台灣母公司無法透過搜尋引擎找到，需手動查詢商業司系統（以「楊憲文」或「順成工業」搜尋）。',
+        events: ['2002/11/11  越南廠成立，同奈工業區'],
+        verifyLinks: [
+          { label: 'findbiz 搜「楊憲文」（負責人）', url: 'https://findbiz.nat.gov.tw/fbs/view/showBizList.do?request_locale=zh_TW&fKey=%E6%A5%8A%E6%86%B2%E6%96%87&busmType=all&cmpyType=all&branchType=all&isShowBranch=N&notnullBusmType=Y&notnullCmpyType=Y&notnullBranchType=Y', status: 'pending' },
+          { label: 'findbiz 搜「順成工業」', url: 'https://findbiz.nat.gov.tw/fbs/view/showBizList.do?request_locale=zh_TW&fKey=%E9%A0%86%E6%88%90%E5%B7%A5%E6%A5%AD&busmType=all&cmpyType=all&branchType=all&isShowBranch=N&notnullBusmType=Y&notnullCmpyType=Y&notnullBranchType=Y', status: 'pending' },
+          { label: 'masothue MST 3600595756', url: 'https://masothue.com/3600595756-shun-cheng-technology-industry-co-ltd', status: 'found' },
+          { label: '同奈台商商會（會員名單）', url: 'https://dongnaitw.com/member/', status: 'pending' },
+        ]
+      },
 
-  { id:'vn-darfon', group:'vn', tag:'sme', label:'達方越南',
-    name:'Darfon Vietnam Co., Ltd. 達方越南',
-    nameEn:'河南省東文四號工業區（Dong Van IV），Lot CN-06',
-    regId:'MST 0700844760',
-    facts:[['地址','河南省金榜縣東文4號工業區 Lot CN-06（Hà Nam Province）'],
-           ['公司型態','外資FDI（台灣100%資本）'],
-           ['法人代表','TSAI, YAO-KUN（蔡耀坤，同TD Hitech越南）'],
-           ['成立','2020年11月19日'],
-           ['主業','筆電鍵盤製造（月產能120萬台）+ E-bike整車組裝'],
-           ['投資規模','~1,000萬美元（FDI）'],
-           ['E-bike合作','與世同金屬（達方持股60%）共同設車架＋組裝線，年產60萬→百萬台'],
-           ['出口市場','歐洲、北美（鍵盤+E-bike整車）']],
-    capital:{amount:'~1,000萬美元（FDI）', level:'high', label:'✓ 越南FDI登記確認'},
-    note:'達方電子越南核心製造基地，鍵盤廠為原始業務，2022年起加入E-bike整車組裝。<b>與TD Hitech越南（電池廠，同奈）共用法人代表蔡耀坤</b>，形成達方越南雙廠協同：河南（鍵盤+整車）＋同奈（電池）。另搭配世同金屬越南車架廠，三廠合力完成E-bike一條龍。',
-    events:['2020/11/19  越南公司取得FDI登記（河南省）','2021  鍵盤廠開始量產（月120萬台）','2022  E-bike整車組裝線（與世同金屬合作）投產，年產60萬台','2024  TD Hitech電池廠（同奈）完工，三廠整合'],
-    verifyLinks:[
-      {label:'masothue MST 0700844760', url:'https://masothue.com/0700844760-cong-ty-tnhh-darfon-viet-nam', status:'found'},
-      {label:'panjiva 進出口紀錄', url:'https://panjiva.com/Darfon-Vietnam-Co-Ltd/153418052', status:'found'},
-    ]},
+      {
+        id: 'tw-tdhitech', group: 'tw', tag: 'sme', label: '統達能源',
+        name: '統達能源股份有限公司 TD HiTech Energy Inc.',
+        nameEn: '新竹縣湖口鄉 — 統振集團 / 達方電子持股60%',
+        regId: '統編 53088877',
+        facts: [['代表人', '蔡耀坤（TSAI, YAO-KUN）'], ['成立', '2010年9月1日'],
+        ['地址', '新竹縣湖口鄉鳳山村鳳工路1號3樓（爬蟲確認）'],
+        ['母公司', '達方電子（TWSE:8163）持股62.9%（2020/9，NT$4.1億）'],
+        ['創辦集團', '統振集團（陳敦仁董事長，41年歷史）'],
+        ['主力產品', 'E-bike高功率電池模組、掃地機器人電池、小型儲能'],
+        ['下游客群', '北美、歐洲主流E-bike品牌（OEM）；達方旗下BESV品牌（日/歐/美）'],
+        ['知名合作', '日本Shimano（自行車傳動大廠）為達方集團客戶'],
+        ['日本通路', 'BESV × 蔦屋書店（日本最大連鎖書店）聯名推廣'],
+        ['合作歷史', 'Ultra Motor ODM合作（2008年起）'],
+        ['姊妹公司', '達振能源（同出統振集團，供台積電UPS電池）'],
+        ['越南角色', '達方越南三廠之電池核心廠，搭配車架廠（世同金屬）+整車組裝廠']],
+        capital: { amount: '未上市（達方電子合併報表）', level: 'medium', label: '✓ 達方電子年報（8163）可查' },
+        note: '統達本身未上市，透過達方電子（上市，TWSE:8163）進入環金雙層結構。達方越南佈局以<b>統達電池廠為核心</b>，搭配世同金屬車架廠與整車組裝廠，2024年完成三廠整合，E-bike年產目標百萬台，出口北美/歐洲。越南廠2024年2月設立，<b>本次樣本中設立時間最短</b>，環金優先鎖定。',
+        events: ['2008  與Ultra Motor開始ODM合作', '2010/9  台灣成立（統振集團旗下）', '2020/9  達方電子投資62.9%（NT$4.1億）', '2024/2  越南同奈AMATA工業區廠取得投資登記（~580萬美元）', '2024  達方越南三廠整合完成'],
+        verifyLinks: [
+          { label: 'twincn 統編53088877', url: 'https://www.twincn.com/item.aspx?no=53088877', status: 'found' },
+          { label: '達方電子年報（MOPS）', url: 'https://mops.twse.com.tw/mops/web/t05st02?step=1&off=1&firstin=1&TYPEK=&co_id=8462', status: 'found' },
+        ]
+      },
 
-  { id:'tw-kenstone', group:'tw', tag:'sme', label:'世同金屬',
-    name:'世同金屬股份有限公司 Kenstone Metal Co., Ltd.',
-    nameEn:'台灣（自行車架製造）— 達方電子持股60%，NT$7.2億',
-    regId:'統編 12231717',
-    facts:[['成立','1979年（老牌自行車架廠）'],
-           ['主業','E-bike車架設計與製造、整車能力'],
-           ['大股東','達方電子（TWSE:8163）持股60%（NT$7.2億）'],
-           ['越南合作','與達方共同設越南E-bike車架+整車組裝廠，年產能60萬→百萬台目標'],
-           ['展覽','2024台北國際自行車展：達方+世同+太宇三合一E-bike概念車'],
-           ['客戶定位','供達方集團BESV品牌及歐美OEM客戶']],
-    capital:{amount:'未上市（達方集團子公司）', level:'medium', label:'達方電子年報可查'},
-    note:'世同金屬是達方電子轉型E-bike的關鍵車架夥伴，達方持股60%（NT$7.2億）取得控制權。越南廠與Darfon Vietnam（鍵盤+組裝）共用廠區資源，台灣+越南雙廠整合，完成達方集團E-bike「三電（電池/電控/電源）+車架+整車」全垂直整合戰略。',
-    events:['1979  台灣成立（老牌車架廠）','達方  達方電子以NT$7.2億取得60%股份','2022  越南E-bike整車廠（與達方共同）投產，年產60萬台'],
-    verifyLinks:[
-      {label:'twincn 統編12231717', url:'https://www.twincn.com/item.aspx?no=12231717', status:'found'},
-      {label:'達方入股世同-pixnet', url:'https://kuangyi01.pixnet.net/blog/post/467047454', status:'found'},
-    ]},
+      {
+        id: 'vn-tdhitech', group: 'vn', tag: 'sme', isNew: true, label: 'TD Hitech',
+        name: 'TD HITECH ENERGY VIETNAM CO., LTD',
+        nameEn: '同奈省仁澤縣紡織工業區（AMATA），Lot A204-207',
+        regId: 'MST 3603949509',
+        facts: [['地址', '同奈省仁澤縣紡織工業區（KCN Dệt May），Lot A204-205-206-207，4號廠房'],
+        ['公司型態', '單一成員有限公司（100%持有）'],
+        ['法人代表', 'TSAI, YAO-KUN（蔡耀坤）— 同時擔任 Darfon Vietnam 法人代表'],
+        ['成立', '2024年2月21日，僅營運約2年'],
+        ['產業', '鋰電池/電池模組、電動自行車充電器（批發+製造）'],
+        ['投資金額', '約580萬美元（FDI，2024年2月）'],
+        ['進口來源', '台灣、中國、日本（60批貨，masothue進出口記錄）'],
+        ['集團關係', '蔡耀坤同時任 Darfon Vietnam 代表 → 確認屬達方集團越南整合體系']],
+        capital: { amount: '約580萬美元（vốn đầu tư）', level: 'high', label: '✓ 投資登記證已驗證' },
+        note: '⚡ <b>本次樣本中設立時間最短（2024年2月）</b>，完全符合環金「近1–2年新設越南公司」優先條件。法人代表蔡耀坤與台灣母公司同名，且同時擔任達方越南（鍵盤廠）代表，確認屬<b>達方集團越南整合三廠體系</b>：Darfon Vietnam（鍵盤/組裝）+ TD Hitech（電池）+ 世同車架廠。',
+        events: ['2024/2/21  取得越南投資登記證（~580萬美元）', '2024  進駐同奈AMATA工業區', '進口  台灣/中國/日本電池零件（60批，含電池芯）'],
+        verifyLinks: [
+          { label: 'masothue MST 3603949509', url: 'https://masothue.com/3603949509-td-hitech-energy-vietnam-co-ltd', status: 'found' },
+          { label: 'thetradevision 進出口', url: 'https://www.thetradevision.com/global/supplier/td-hitech-energy-vietnam-company-ltd/vietnam/1476205', status: 'found' },
+        ]
+      },
 
-];
+      {
+        id: 'vn-darfon', group: 'vn', tag: 'sme', label: '達方越南',
+        name: 'Darfon Vietnam Co., Ltd. 達方越南',
+        nameEn: '河南省東文四號工業區（Dong Van IV），Lot CN-06',
+        regId: 'MST 0700844760',
+        facts: [['地址', '河南省金榜縣東文4號工業區 Lot CN-06（Hà Nam Province）'],
+        ['公司型態', '外資FDI（台灣100%資本）'],
+        ['法人代表', 'TSAI, YAO-KUN（蔡耀坤，同TD Hitech越南）'],
+        ['成立', '2020年11月19日'],
+        ['主業', '筆電鍵盤製造（月產能120萬台）+ E-bike整車組裝'],
+        ['投資規模', '~1,000萬美元（FDI）'],
+        ['E-bike合作', '與世同金屬（達方持股60%）共同設車架＋組裝線，年產60萬→百萬台'],
+        ['出口市場', '歐洲、北美（鍵盤+E-bike整車）']],
+        capital: { amount: '~1,000萬美元（FDI）', level: 'high', label: '✓ 越南FDI登記確認' },
+        note: '達方電子越南核心製造基地，鍵盤廠為原始業務，2022年起加入E-bike整車組裝。<b>與TD Hitech越南（電池廠，同奈）共用法人代表蔡耀坤</b>，形成達方越南雙廠協同：河南（鍵盤+整車）＋同奈（電池）。另搭配世同金屬越南車架廠，三廠合力完成E-bike一條龍。',
+        events: ['2020/11/19  越南公司取得FDI登記（河南省）', '2021  鍵盤廠開始量產（月120萬台）', '2022  E-bike整車組裝線（與世同金屬合作）投產，年產60萬台', '2024  TD Hitech電池廠（同奈）完工，三廠整合'],
+        verifyLinks: [
+          { label: 'masothue MST 0700844760', url: 'https://masothue.com/0700844760-cong-ty-tnhh-darfon-viet-nam', status: 'found' },
+          { label: 'panjiva 進出口紀錄', url: 'https://panjiva.com/Darfon-Vietnam-Co-Ltd/153418052', status: 'found' },
+        ]
+      },
 
-// ═══════════════════════════════════════════
-//  關係線
-// ═══════════════════════════════════════════
-const links = [
-  // 鈺齊集團
-  { source:'yq-ky', target:'yq-vn1', type:'flow', tag:'ky', amount:'投資總額未公開',
-    sources:[{tag:'TW年報', text:'鈺齊-KY合併年報 — 越南鈺齊列重要子公司，2024年產能佔比58.93%'},{tag:'VN稅號', text:'masothue.com — 確認河內廠台灣母公司登記'}]},
-  { source:'yq-ky', target:'yq-vn2', type:'invest', tag:'ky',
-    sources:[{tag:'TW年報', text:'鈺齊-KY合併報表附註 — 越南鈺興列子公司，100%持股'}]},
-  { source:'yq-vn1', target:'yq-vn2', type:'group', tag:'ky',
-    sources:[{tag:'集團架構', text:'鈺齊公開說明書 — 兩家越南廠同屬集團越南製造群，共同受台灣總部管理'}]},
+      {
+        id: 'tw-kenstone', group: 'tw', tag: 'sme', label: '世同金屬',
+        name: '世同金屬股份有限公司 Kenstone Metal Co., Ltd.',
+        nameEn: '台灣（自行車架製造）— 達方電子持股60%，NT$7.2億',
+        regId: '統編 12231717',
+        facts: [['成立', '1979年（老牌自行車架廠）'],
+        ['主業', 'E-bike車架設計與製造、整車能力'],
+        ['大股東', '達方電子（TWSE:8163）持股60%（NT$7.2億）'],
+        ['越南合作', '與達方共同設越南E-bike車架+整車組裝廠，年產能60萬→百萬台目標'],
+        ['展覽', '2024台北國際自行車展：達方+世同+太宇三合一E-bike概念車'],
+        ['客戶定位', '供達方集團BESV品牌及歐美OEM客戶']],
+        capital: { amount: '未上市（達方集團子公司）', level: 'medium', label: '達方電子年報可查' },
+        note: '世同金屬是達方電子轉型E-bike的關鍵車架夥伴，達方持股60%（NT$7.2億）取得控制權。越南廠與Darfon Vietnam（鍵盤+組裝）共用廠區資源，台灣+越南雙廠整合，完成達方集團E-bike「三電（電池/電控/電源）+車架+整車」全垂直整合戰略。',
+        events: ['1979  台灣成立（老牌車架廠）', '達方  達方電子以NT$7.2億取得60%股份', '2022  越南E-bike整車廠（與達方共同）投產，年產60萬台'],
+        verifyLinks: [
+          { label: 'twincn 統編12231717', url: 'https://www.twincn.com/item.aspx?no=12231717', status: 'found' },
+          { label: '達方入股世同-pixnet', url: 'https://kuangyi01.pixnet.net/blog/post/467047454', status: 'found' },
+        ]
+      },
 
-  // 台南集團
-  { source:'tnn-ky', target:'tnn-vn', type:'invest', tag:'ky',
-    sources:[{tag:'TW公開資訊', text:'台南-KY（TWSE:5906）年報 — 越南子公司列合併報表'},{tag:'VN登記', text:'dangkykinhdoanh.gov.vn — 可搜尋Tainan Vietnam確認外資登記'}]},
+    ];
 
-  // 三集瑞集團
-  { source:'trio-ky', target:'trio-vn', type:'flow', tag:'ky', amount:'建設中（金額未公開）',
-    sources:[{tag:'法說會', text:'三集瑞法說會2025年 — 宣布越南廠動土，規劃32條自動化線，2026年底量產'},{tag:'媒體', text:'cnyes.com 2025年 — 引用三集瑞法說會越南廠規劃'}]},
+    // ═══════════════════════════════════════════
+    //  關係線
+    // ═══════════════════════════════════════════
+    const links = [
+      // 鈺齊集團
+      {
+        source: 'yq-ky', target: 'yq-vn1', type: 'flow', tag: 'ky', amount: '投資總額未公開',
+        sources: [{ tag: 'TW年報', text: '鈺齊-KY合併年報 — 越南鈺齊列重要子公司，2024年產能佔比58.93%' }, { tag: 'VN稅號', text: 'masothue.com — 確認河內廠台灣母公司登記' }]
+      },
+      {
+        source: 'yq-ky', target: 'yq-vn2', type: 'invest', tag: 'ky',
+        sources: [{ tag: 'TW年報', text: '鈺齊-KY合併報表附註 — 越南鈺興列子公司，100%持股' }]
+      },
+      {
+        source: 'yq-vn1', target: 'yq-vn2', type: 'group', tag: 'ky',
+        sources: [{ tag: '集團架構', text: '鈺齊公開說明書 — 兩家越南廠同屬集團越南製造群，共同受台灣總部管理' }]
+      },
 
-  // 吉源集團
-  { source:'jy-ky', target:'jy-vn', type:'invest', tag:'ky',
-    sources:[{tag:'TW上市公告', text:'吉源-KY 2024/12上市說明書（TWSE） — 越南子公司列重要子公司'},{tag:'TWSE簡報', text:'twse.com.tw 公司簡報2024/12/09 — 揭露越南廠架構'}]},
+      // 台南集團
+      {
+        source: 'tnn-ky', target: 'tnn-vn', type: 'invest', tag: 'ky',
+        sources: [{ tag: 'TW公開資訊', text: '台南-KY（TWSE:5906）年報 — 越南子公司列合併報表' }, { tag: 'VN登記', text: 'dangkykinhdoanh.gov.vn — 可搜尋Tainan Vietnam確認外資登記' }]
+      },
 
-  // 安普新集團
-  { source:'tw-ampacs', target:'vn-ampacs', type:'invest', tag:'sme',
-    sources:[{tag:'TW上市資訊', text:'安普新年報（TWSE:6743） — 越南子公司列合併報表，2019年設立時母公司尚未上市'},{tag:'MOPS附件', text:'mops.twse.com.tw — 安普新2020年上市說明書揭露越南廠投資'}]},
+      // 三集瑞集團
+      {
+        source: 'trio-ky', target: 'trio-vn', type: 'flow', tag: 'ky', amount: '建設中（金額未公開）',
+        sources: [{ tag: '法說會', text: '三集瑞法說會2025年 — 宣布越南廠動土，規劃32條自動化線，2026年底量產' }, { tag: '媒體', text: 'cnyes.com 2025年 — 引用三集瑞法說會越南廠規劃' }]
+      },
 
-  // 和正豐集團
-  { source:'tw-bueno', target:'vn-bueno', type:'invest', tag:'sme',
-    sources:[{tag:'VN稅號', text:'masothue.com（MST 3600882782） — 單一成員有限公司，台灣母公司100%持有，法人代表CHEN KUAN-HAN'},{tag:'官網佐證', text:'buenoeco.com — Bueno Group越南廠資訊，產品線與越南廠登記一致'}]},
+      // 吉源集團
+      {
+        source: 'jy-ky', target: 'jy-vn', type: 'invest', tag: 'ky',
+        sources: [{ tag: 'TW上市公告', text: '吉源-KY 2024/12上市說明書（TWSE） — 越南子公司列重要子公司' }, { tag: 'TWSE簡報', text: 'twse.com.tw 公司簡報2024/12/09 — 揭露越南廠架構' }]
+      },
 
-  // Charterleader集團
-  { source:'tw-charterleader', target:'vn-charterleader', type:'invest', tag:'sme',
-    sources:[{tag:'VN稅號', text:'masothue.com（MST 0108763399） — 法人代表KAO CHIEH-SHENG（高捷成）'},{tag:'LinkedIn', text:'linkedin.com/company/charterleader-electronics-group — 確認台北總部，蘇州/東莞/越南三地設廠'},{tag:'進出口', text:'volza.com — Charter Leader Technology越南進出口紀錄，產品HS 8473/8543'}]},
-  { source:'tw-charterleader', target:'vn-clt-bn', type:'invest', tag:'sme',
-    sources:[{tag:'masothue', text:'MST 2301236034 — CLT在北寧市Đại Phúc坊設立獨立稅號法人，法人代表KAO CHIEH-SHENG（高捷成）'},{tag:'doanhnghiep.biz', text:'doanhnghiep.biz/2301236034 — 北寧獨立登記確認'}]},
-  { source:'vn-charterleader', target:'vn-clt-bn', type:'group', tag:'sme',
-    sources:[{tag:'集團架構', text:'河內主體（0108763399）與北寧獨立法人（2301236034）同屬高捷成掌控，河內為登記主體，北寧為實際製造運營重心'}]},
+      // 安普新集團
+      {
+        source: 'tw-ampacs', target: 'vn-ampacs', type: 'invest', tag: 'sme',
+        sources: [{ tag: 'TW上市資訊', text: '安普新年報（TWSE:6743） — 越南子公司列合併報表，2019年設立時母公司尚未上市' }, { tag: 'MOPS附件', text: 'mops.twse.com.tw — 安普新2020年上市說明書揭露越南廠投資' }]
+      },
 
-  // 統振集團內部架構
-  { source:'welldone', target:'tw-tdhitech', type:'group', tag:'sme', amount:'原始100%持股（2020讓給達方）',
-    sources:[{tag:'統振集團沿革', text:'welldone.com.tw — 統達能源原為統振100%持股子公司，2020年引進達方電子策略投資，統振讓出控制權'},{tag:'MoneyDJ', text:'統振看好達方，讓出統達能源經營權（money.udn.com）'}]},
-  { source:'welldone', target:'dajhen', type:'group', tag:'sme',
-    sources:[{tag:'統振集團沿革', text:'達振能源由統振集團設立（2008年），2022年讓多數股給錸寶科技，統振喪失控制力'}]},
+      // 和正豐集團
+      {
+        source: 'tw-bueno', target: 'vn-bueno', type: 'invest', tag: 'sme',
+        sources: [{ tag: 'VN稅號', text: 'masothue.com（MST 3600882782） — 單一成員有限公司，台灣母公司100%持有，法人代表CHEN KUAN-HAN' }, { tag: '官網佐證', text: 'buenoeco.com — Bueno Group越南廠資訊，產品線與越南廠登記一致' }]
+      },
 
-  // 達方電子 → 越南雙廠 + 世同金屬
-  { source:'darfon', target:'vn-darfon', type:'invest', tag:'sme', amount:'~1,000萬美元（FDI，2020）',
-    sources:[{tag:'Yahoo股市', text:'達方斥資千萬美元設越南子公司，2020年底投產，鍵盤月產能120萬台'},{tag:'masothue MST 0700844760', text:'Darfon Vietnam Co., Ltd. 河南省東文四號工業區，外資FDI'}]},
-  { source:'darfon', target:'tw-kenstone', type:'invest', tag:'sme', amount:'NT$7.2億（60%股份）',
-    sources:[{tag:'未上市撮合', text:'達方電子以NT$7.2億入股世同金屬60%，強攻E-bike車架整合'},{tag:'CTee工商時報', text:'達方衝E-Bike 2025成長期，世同金屬為車架核心子公司'}]},
-  { source:'tw-kenstone', target:'vn-darfon', type:'flow', tag:'sme',
-    sources:[{tag:'數位時代', text:'達方+世同在越南共設車架及E-bike組裝線，2022年投產，年產能60萬台，目標百萬台'}]},
+      // Charterleader集團
+      {
+        source: 'tw-charterleader', target: 'vn-charterleader', type: 'invest', tag: 'sme',
+        sources: [{ tag: 'VN稅號', text: 'masothue.com（MST 0108763399） — 法人代表KAO CHIEH-SHENG（高捷成）' }, { tag: 'LinkedIn', text: 'linkedin.com/company/charterleader-electronics-group — 確認台北總部，蘇州/東莞/越南三地設廠' }, { tag: '進出口', text: 'volza.com — Charter Leader Technology越南進出口紀錄，產品HS 8473/8543' }]
+      },
+      {
+        source: 'tw-charterleader', target: 'vn-clt-bn', type: 'invest', tag: 'sme',
+        sources: [{ tag: 'masothue', text: 'MST 2301236034 — CLT在北寧市Đại Phúc坊設立獨立稅號法人，法人代表KAO CHIEH-SHENG（高捷成）' }, { tag: 'doanhnghiep.biz', text: 'doanhnghiep.biz/2301236034 — 北寧獨立登記確認' }]
+      },
+      {
+        source: 'vn-charterleader', target: 'vn-clt-bn', type: 'group', tag: 'sme',
+        sources: [{ tag: '集團架構', text: '河內主體（0108763399）與北寧獨立法人（2301236034）同屬高捷成掌控，河內為登記主體，北寧為實際製造運營重心' }]
+      },
 
-  // 達方電子 → 統達能源（上游持股）
-  { source:'darfon', target:'tw-tdhitech', type:'invest', tag:'sme', amount:'NT$4.1億上限（62.9%股份）',
-    sources:[{tag:'媒體', text:'數位時代bnext.com.tw（2020/8） — 達方電子董事會通過收購統達能源62.9%股權，金額上限NT$4.1億，2020/9完成交割'},{tag:'今周刊', text:'businesstoday.com.tw（2024/3） — 達方越南三廠：車架（世同金屬）、電池（統達，2024中完工）、組裝（2024底），年產百萬台目標'}]},
+      // 統振集團內部架構
+      {
+        source: 'welldone', target: 'tw-tdhitech', type: 'group', tag: 'sme', amount: '原始100%持股（2020讓給達方）',
+        sources: [{ tag: '統振集團沿革', text: 'welldone.com.tw — 統達能源原為統振100%持股子公司，2020年引進達方電子策略投資，統振讓出控制權' }, { tag: 'MoneyDJ', text: '統振看好達方，讓出統達能源經營權（money.udn.com）' }]
+      },
+      {
+        source: 'welldone', target: 'dajhen', type: 'group', tag: 'sme',
+        sources: [{ tag: '統振集團沿革', text: '達振能源由統振集團設立（2008年），2022年讓多數股給錸寶科技，統振喪失控制力' }]
+      },
 
-  // 統達能源集團
-  { source:'tw-tdhitech', target:'vn-tdhitech', type:'flow', tag:'sme', amount:'約580萬美元',
-    sources:[{tag:'VN投資登記', text:'越南投資登記證（2024年2月） — 約580萬美元，進駐同奈省仁澤AMATA工業區'},{tag:'TW登記', text:'twincn.com（統編53088877） — 確認代表人蔡耀坤，新竹縣湖口鄉'},{tag:'媒體', text:'bnext.com.tw — 達方電子2020年投資統達能源60%，越南電動自行車產線規劃'}]},
-];
+      // 達方電子 → 越南雙廠 + 世同金屬
+      {
+        source: 'darfon', target: 'vn-darfon', type: 'invest', tag: 'sme', amount: '~1,000萬美元（FDI，2020）',
+        sources: [{ tag: 'Yahoo股市', text: '達方斥資千萬美元設越南子公司，2020年底投產，鍵盤月產能120萬台' }, { tag: 'masothue MST 0700844760', text: 'Darfon Vietnam Co., Ltd. 河南省東文四號工業區，外資FDI' }]
+      },
+      {
+        source: 'darfon', target: 'tw-kenstone', type: 'invest', tag: 'sme', amount: 'NT$7.2億（60%股份）',
+        sources: [{ tag: '未上市撮合', text: '達方電子以NT$7.2億入股世同金屬60%，強攻E-bike車架整合' }, { tag: 'CTee工商時報', text: '達方衝E-Bike 2025成長期，世同金屬為車架核心子公司' }]
+      },
+      {
+        source: 'tw-kenstone', target: 'vn-darfon', type: 'flow', tag: 'sme',
+        sources: [{ tag: '數位時代', text: '達方+世同在越南共設車架及E-bike組裝線，2022年投產，年產能60萬台，目標百萬台' }]
+      },
 
-// ═══════════════════════════════════════════
-//  D3 圖形
-// ═══════════════════════════════════════════
-const nodeById = {};
-nodes.forEach(n => nodeById[n.id] = n);
-const typeLabel = {invest:'投資',flow:'金流事件',group:'集團架構'};
+      // 達方電子 → 統達能源（上游持股）
+      {
+        source: 'darfon', target: 'tw-tdhitech', type: 'invest', tag: 'sme', amount: 'NT$4.1億上限（62.9%股份）',
+        sources: [{ tag: '媒體', text: '數位時代bnext.com.tw（2020/8） — 達方電子董事會通過收購統達能源62.9%股權，金額上限NT$4.1億，2020/9完成交割' }, { tag: '今周刊', text: 'businesstoday.com.tw（2024/3） — 達方越南三廠：車架（世同金屬）、電池（統達，2024中完工）、組裝（2024底），年產百萬台目標' }]
+      },
 
-const wrap = document.getElementById('graph-wrap');
-const svg  = d3.select('#graph');
-let W = wrap.clientWidth, H = wrap.clientHeight;
-svg.attr('width',W).attr('height',H);
+      // 統達能源集團
+      {
+        source: 'tw-tdhitech', target: 'vn-tdhitech', type: 'flow', tag: 'sme', amount: '約580萬美元',
+        sources: [{ tag: 'VN投資登記', text: '越南投資登記證（2024年2月） — 約580萬美元，進駐同奈省仁澤AMATA工業區' }, { tag: 'TW登記', text: 'twincn.com（統編53088877） — 確認代表人蔡耀坤，新竹縣湖口鄉' }, { tag: '媒體', text: 'bnext.com.tw — 達方電子2020年投資統達能源60%，越南電動自行車產線規劃' }]
+      },
+    ];
 
-const defs = svg.append('defs');
-defs.append('marker').attr('id','arr').attr('viewBox','0 0 10 10')
-  .attr('refX',9).attr('refY',5).attr('markerWidth',6).attr('markerHeight',6)
-  .attr('orient','auto-start-reverse')
-  .append('path').attr('d','M0,0L10,5L0,10Z').attr('fill','#9b6f00');
+    // ═══════════════════════════════════════════
+    //  D3 圖形
+    // ═══════════════════════════════════════════
+    const nodeById = {};
+    nodes.forEach(n => nodeById[n.id] = n);
+    const typeLabel = { invest: '投資', flow: '金流事件', group: '集團架構' };
 
-const linkLayer = svg.append('g');
-const nodeLayer = svg.append('g');
+    const wrap = document.getElementById('graph-wrap');
+    const svg = d3.select('#graph');
+    let W = wrap.clientWidth, H = wrap.clientHeight;
+    svg.attr('width', W).attr('height', H);
 
-const linkG = linkLayer.selectAll('g.linkgroup').data(links).join('g').attr('class','linkgroup');
-linkG.append('line').attr('class','link-hit');
-linkG.append('line').attr('class',d=>'link '+d.type).attr('marker-end',d=>d.type==='group'?null:'url(#arr)');
-linkG.on('click',(_,d)=>openEdgePanel(d))
-     .on('mouseenter',(_,d)=>highlightEdge(d))
-     .on('mouseleave',()=>clearHL());
+    const defs = svg.append('defs');
+    defs.append('marker').attr('id', 'arr').attr('viewBox', '0 0 10 10')
+      .attr('refX', 9).attr('refY', 5).attr('markerWidth', 6).attr('markerHeight', 6)
+      .attr('orient', 'auto-start-reverse')
+      .append('path').attr('d', 'M0,0L10,5L0,10Z').attr('fill', '#9b6f00');
 
-const nodeSel = nodeLayer.selectAll('g.node').data(nodes).join('g')
-  .attr('class',d=>{
-    let c='node '+d.group;
-    if(d.orphan) c+=' orphan';
-    if(d.listed) c+=' listed';
-    if(d.isNew)  c+=' new-vn';
-    return c;
-  })
-  .call(d3.drag()
-    .on('start',(e,d)=>{dragMoved=false;if(!e.active)sim.alphaTarget(.3).restart();})
-    .on('drag',(e,d)=>{if(Math.abs(e.dx)>2||Math.abs(e.dy)>2)dragMoved=true;if(dragMoved){d.fx=e.x;d.fy=e.y;}})
-    .on('end',(e,d)=>{sim.alphaTarget(0);if(!dragMoved)openNodePanel(d);}));
+    const linkLayer = svg.append('g');
+    const nodeLayer = svg.append('g');
 
-nodeSel.append('circle').attr('r',d=>d.group==='tw'?27:23);
-nodeSel.filter(d=>d.isNew).append('circle').attr('class','ring-pulse').attr('r',d=>(d.group==='tw'?27:23)+8);
+    const linkG = linkLayer.selectAll('g.linkgroup').data(links).join('g').attr('class', 'linkgroup');
+    linkG.append('line').attr('class', 'link-hit');
+    linkG.append('line').attr('class', d => 'link ' + d.type).attr('marker-end', d => d.type === 'group' ? null : 'url(#arr)');
+    linkG.on('click', (_, d) => openEdgePanel(d))
+      .on('mouseenter', (_, d) => highlightEdge(d))
+      .on('mouseleave', () => clearHL());
 
-nodeSel.each(function(d){
-  const g=d3.select(this);
-  const words=d.label.length>4?[d.label.slice(0,4),d.label.slice(4)]:[d.label];
-  words.forEach((w,i)=>g.append('text').attr('dy',words.length>1?(i===0?-1:9):3).text(w));
-  const r=d.group==='tw'?27:23;
-  let sub='';
-  if(d.isNew) sub='近期設立';
-  else if(d.orphan) sub='台灣端待查';
-  else if(d.listed) sub='已上市*';
-  if(sub) g.append('text').attr('class','sub-tag').attr('dy',r+18).text(sub);
-});
+    const nodeSel = nodeLayer.selectAll('g.node').data(nodes).join('g')
+      .attr('class', d => {
+        let c = 'node ' + d.group;
+        if (d.orphan) c += ' orphan';
+        if (d.listed) c += ' listed';
+        if (d.isNew) c += ' new-vn';
+        return c;
+      })
+      .call(d3.drag()
+        .on('start', (e, d) => { dragMoved = false; if (!e.active) sim.alphaTarget(.3).restart(); })
+        .on('drag', (e, d) => { if (Math.abs(e.dx) > 2 || Math.abs(e.dy) > 2) dragMoved = true; if (dragMoved) { d.fx = e.x; d.fy = e.y; } })
+        .on('end', (e, d) => { sim.alphaTarget(0); if (!dragMoved) openNodePanel(d); }));
 
-// ── simulation ──
-// 對於 KY 集團：台灣端靠左上 / 越南端靠右上
-// 對於 SME：台灣端靠左下 / 越南端靠右下 / 孤點居中右
-function xTarget(d){
-  if(d.orphan) return W*.72;
-  return d.group==='tw'? W*.22 : W*.78;
-}
-function yTarget(d){
-  const top = d.tag==='ky';
-  const base = top? H*.33 : H*.67;
-  if(d.id==='vn-shuncheng') return H*.78;
-  return base;
-}
+    nodeSel.append('circle').attr('r', d => d.group === 'tw' ? 27 : 23);
+    nodeSel.filter(d => d.isNew).append('circle').attr('class', 'ring-pulse').attr('r', d => (d.group === 'tw' ? 27 : 23) + 8);
 
-const sim = d3.forceSimulation(nodes)
-  .force('link',d3.forceLink(links).id(d=>d.id).distance(210).strength(.22))
-  .force('charge',d3.forceManyBody().strength(-350))
-  .force('collide',d3.forceCollide(48))
-  .force('x',d3.forceX(xTarget).strength(.2))
-  .force('y',d3.forceY(yTarget).strength(.12))
-  .on('tick',tick);
+    nodeSel.each(function (d) {
+      const g = d3.select(this);
+      const words = d.label.length > 4 ? [d.label.slice(0, 4), d.label.slice(4)] : [d.label];
+      words.forEach((w, i) => g.append('text').attr('dy', words.length > 1 ? (i === 0 ? -1 : 9) : 3).text(w));
+      const r = d.group === 'tw' ? 27 : 23;
+      let sub = '';
+      if (d.isNew) sub = '近期設立';
+      else if (d.orphan) sub = '台灣端待查';
+      else if (d.listed) sub = '已上市*';
+      if (sub) g.append('text').attr('class', 'sub-tag').attr('dy', r + 18).text(sub);
+    });
 
-function tick(){
-  linkG.selectAll('line').attr('x1',d=>d.source.x).attr('y1',d=>d.source.y)
-    .attr('x2',d=>d.target.x).attr('y2',d=>d.target.y);
-  nodeSel.attr('transform',d=>`translate(${d.x},${d.y})`);
-}
+    // ── simulation ──
+    // 對於 KY 集團：台灣端靠左上 / 越南端靠右上
+    // 對於 SME：台灣端靠左下 / 越南端靠右下 / 孤點居中右
+    function xTarget(d) {
+      if (d.orphan) return W * .72;
+      return d.group === 'tw' ? W * .22 : W * .78;
+    }
+    function yTarget(d) {
+      const top = d.tag === 'ky';
+      const base = top ? H * .33 : H * .67;
+      if (d.id === 'vn-shuncheng') return H * .78;
+      return base;
+    }
 
-let dragMoved=false;
-nodeSel.on('mouseenter',(_,d)=>highlightNode(d.id)).on('mouseleave',()=>clearHL());
-function clearHL(){linkG.classed('dim',false);nodeSel.classed('dim',false);}
-function highlightNode(id){
-  const conn=new Set([id]);
-  links.forEach(l=>{const s=l.source.id||l.source,t=l.target.id||l.target;if(s===id)conn.add(t);if(t===id)conn.add(s);});
-  linkG.classed('dim',l=>{const s=l.source.id||l.source,t=l.target.id||l.target;return s!==id&&t!==id;});
-  nodeSel.classed('dim',n=>!conn.has(n.id));
-}
-function highlightEdge(d){
-  const s=d.source.id||d.source,t=d.target.id||d.target;
-  nodeSel.classed('dim',n=>n.id!==s&&n.id!==t);
-  linkG.classed('dim',l=>l!==d);
-}
+    const sim = d3.forceSimulation(nodes)
+      .force('link', d3.forceLink(links).id(d => d.id).distance(210).strength(.22))
+      .force('charge', d3.forceManyBody().strength(-350))
+      .force('collide', d3.forceCollide(48))
+      .force('x', d3.forceX(xTarget).strength(.2))
+      .force('y', d3.forceY(yTarget).strength(.12))
+      .on('tick', tick);
 
-// ── filter ──
-const filterState={f:'all'};
-document.querySelectorAll('.filter-btn').forEach(btn=>{
-  btn.addEventListener('click',function(){
-    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('on'));
-    this.classList.add('on');
-    filterState.f=this.dataset.f;
-    applyFilter();
-  });
-});
-function applyFilter(){
-  const f=filterState.f;
-  nodeSel.attr('opacity',d=>{
-    if(f==='all') return 1;
-    if(f==='ky') return d.tag==='ky'?1:.1;
-    if(f==='sme') return d.tag==='sme'?1:.1;
-    if(f==='new') return d.isNew?1:.1;
-    return 1;
-  });
-  linkG.attr('opacity',d=>{
-    if(f==='all') return 1;
-    if(f==='invest') return d.type==='invest'?1:.04;
-    if(f==='flow')   return d.type==='flow'?1:.04;
-    if(f==='group')  return d.type==='group'?1:.04;
-    if(f==='ky')  return d.tag==='ky'?1:.04;
-    if(f==='sme') return d.tag==='sme'?1:.04;
-    if(f==='new') return (nodeById[d.source.id||d.source]?.isNew||nodeById[d.target.id||d.target]?.isNew)?1:.04;
-    return 1;
-  });
-}
+    function tick() {
+      linkG.selectAll('line').attr('x1', d => d.source.x).attr('y1', d => d.source.y)
+        .attr('x2', d => d.target.x).attr('y2', d => d.target.y);
+      nodeSel.attr('transform', d => `translate(${d.x},${d.y})`);
+    }
 
-// ── detail panel ──
-function verifyBlock(links){
-  if(!links||!links.length) return '';
-  let h='<div id="verify-drawer"><h4>查詢入口（點連結直接開啟）</h4>';
-  links.forEach(l=>{
-    const cls=l.status==='found'?'found':'pending';
-    const label=l.status==='found'?'已驗證':'待查';
-    h+=`<div class="vlink"><a href="${l.url}" target="_blank" rel="noopener">${l.label}</a><span class="vstatus ${cls}">${label}</span></div>`;
-  });
-  return h+'</div>';
-}
+    let dragMoved = false;
+    nodeSel.on('mouseenter', (_, d) => highlightNode(d.id)).on('mouseleave', () => clearHL());
+    function clearHL() { linkG.classed('dim', false); nodeSel.classed('dim', false); }
+    function highlightNode(id) {
+      const conn = new Set([id]);
+      links.forEach(l => { const s = l.source.id || l.source, t = l.target.id || l.target; if (s === id) conn.add(t); if (t === id) conn.add(s); });
+      linkG.classed('dim', l => { const s = l.source.id || l.source, t = l.target.id || l.target; return s !== id && t !== id; });
+      nodeSel.classed('dim', n => !conn.has(n.id));
+    }
+    function highlightEdge(d) {
+      const s = d.source.id || d.source, t = d.target.id || d.target;
+      nodeSel.classed('dim', n => n.id !== s && n.id !== t);
+      linkG.classed('dim', l => l !== d);
+    }
 
-function relList(id){
-  const out=[];
-  links.forEach(l=>{
-    const s=l.source.id||l.source,t=l.target.id||l.target;
-    if(s===id) out.push({other:nodeById[t],type:l.type,dir:'→',link:l});
-    if(t===id) out.push({other:nodeById[s],type:l.type,dir:'←',link:l});
-  });
-  return out;
-}
+    // ── filter ──
+    const filterState = { f: 'all' };
+    document.querySelectorAll('.filter-btn').forEach(btn => {
+      btn.addEventListener('click', function () {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('on'));
+        this.classList.add('on');
+        filterState.f = this.dataset.f;
+        applyFilter();
+      });
+    });
+    function applyFilter() {
+      const f = filterState.f;
+      nodeSel.attr('opacity', d => {
+        if (f === 'all') return 1;
+        if (f === 'ky') return d.tag === 'ky' ? 1 : .1;
+        if (f === 'sme') return d.tag === 'sme' ? 1 : .1;
+        if (f === 'new') return d.isNew ? 1 : .1;
+        return 1;
+      });
+      linkG.attr('opacity', d => {
+        if (f === 'all') return 1;
+        if (f === 'invest') return d.type === 'invest' ? 1 : .04;
+        if (f === 'flow') return d.type === 'flow' ? 1 : .04;
+        if (f === 'group') return d.type === 'group' ? 1 : .04;
+        if (f === 'ky') return d.tag === 'ky' ? 1 : .04;
+        if (f === 'sme') return d.tag === 'sme' ? 1 : .04;
+        if (f === 'new') return (nodeById[d.source.id || d.source]?.isNew || nodeById[d.target.id || d.target]?.isNew) ? 1 : .04;
+        return 1;
+      });
+    }
 
-function openNodePanel(d){
-  const c=document.getElementById('panel-content');
-  let h='';
-  h+=`<div><span class="p-country ${d.group}">${d.group==='tw'?'Taiwan':'Vietnam'}</span><span class="p-regid">${d.regId||''}</span></div>`;
-  h+=`<h2>${d.name}</h2><p class="name-en">${d.nameEn||''}</p>`;
-  if(d.listed)  h+=`<div class="banner warn">⚠ 台灣母公司已上市 — 嚴格已脫離環金「未公開發行」定義，保留作升格軌跡案例</div>`;
-  if(d.isNew)   h+=`<div class="banner new">⚡ 近1–2年越南新設（${d.facts.find(f=>f[0]==='成立')?.[1]||''}） — 環金優先鎖定</div>`;
-  if(d.orphan)  h+=`<div class="banner orphan">🔍 越南端已驗證，台灣端查無公開索引 — 請點下方「查詢入口」手動查商業司</div>`;
-  h+='<dl class="facts">'+d.facts.map(f=>`<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('')+'</dl>';
-  if(d.capital) h+=`<div class="capital-line"><span class="amount ${d.capital.level==='high'?'':'unclear'}">${d.capital.amount}</span><span class="confidence ${d.capital.level==='high'?'high':''}">${d.capital.label}</span></div>`;
-  if(d.note){
-    h+=`<div class="p-note">${d.note}`;
-    if(d.events?.length) h+='<ul class="events">'+d.events.map(e=>`<li>▸ ${e}</li>`).join('')+'</ul>';
-    h+='</div>';
-  }
-  const rel=relList(d.id);
-  if(rel.length){
-    h+='<div class="p-rel-title">關係（點一下看來源佐證）</div>';
-    rel.forEach((r,i)=>h+=`<div class="p-rel" data-idx="${i}"><span class="ptag">${typeLabel[r.type]}</span><span style="color:var(--muted);font-family:var(--mono);font-size:11px">${r.dir}</span><span>${r.other?.name||''}</span><span class="chev">›</span></div>`);
-  }
-  h+=verifyBlock(d.verifyLinks);
-  c.innerHTML=h;
-  c.querySelectorAll('.p-rel').forEach(el=>el.addEventListener('click',()=>openEdgePanel(rel[+el.dataset.idx].link)));
-  show();
-}
+    // ── detail panel ──
+    function verifyBlock(links) {
+      if (!links || !links.length) return '';
+      let h = '<div id="verify-drawer"><h4>查詢入口（點連結直接開啟）</h4>';
+      links.forEach(l => {
+        const cls = l.status === 'found' ? 'found' : 'pending';
+        const label = l.status === 'found' ? '已驗證' : '待查';
+        h += `<div class="vlink"><a href="${l.url}" target="_blank" rel="noopener">${l.label}</a><span class="vstatus ${cls}">${label}</span></div>`;
+      });
+      return h + '</div>';
+    }
 
-function openEdgePanel(d){
-  const c=document.getElementById('panel-content');
-  const s=nodeById[d.source.id||d.source], t=nodeById[d.target.id||d.target];
-  let h=`<span class="back-link" id="backToNode">‹ 回上一層</span><br>`;
-  h+=`<span class="p-country edge-${d.type}">${typeLabel[d.type]}</span>`;
-  h+=`<h2 style="font-size:18px">${s?.label} → ${t?.label}</h2>`;
-  h+=`<p class="name-en">${s?.name||''} → ${t?.name||''}</p>`;
-  if(d.amount) h+=`<div class="capital-line"><span class="amount">${d.amount}</span><span class="confidence high">本連線對應金額</span></div>`;
-  if(d.sources?.length){
-    h+='<div class="p-rel-title">來源佐證</div><div class="p-sources">';
-    d.sources.forEach(src=>h+=`<div class="p-source-row"><span class="stag">${src.tag}</span><span class="sdesc">${src.text}</span></div>`);
-    h+='</div>';
-  }
-  c.innerHTML=h;
-  document.getElementById('backToNode')?.addEventListener('click',()=>openNodePanel(s));
-  show();
-}
+    function relList(id) {
+      const out = [];
+      links.forEach(l => {
+        const s = l.source.id || l.source, t = l.target.id || l.target;
+        if (s === id) out.push({ other: nodeById[t], type: l.type, dir: '→', link: l });
+        if (t === id) out.push({ other: nodeById[s], type: l.type, dir: '←', link: l });
+      });
+      return out;
+    }
 
-function show(){document.getElementById('panel').classList.add('open');document.getElementById('backdrop').classList.add('open');}
-function hide(){document.getElementById('panel').classList.remove('open');document.getElementById('backdrop').classList.remove('open');}
-document.getElementById('panel-close').addEventListener('click',hide);
-document.getElementById('backdrop').addEventListener('click',hide);
+    function openNodePanel(d) {
+      const c = document.getElementById('panel-content');
+      let h = '';
+      h += `<div><span class="p-country ${d.group}">${d.group === 'tw' ? 'Taiwan' : 'Vietnam'}</span><span class="p-regid">${d.regId || ''}</span></div>`;
+      h += `<h2>${d.name}</h2><p class="name-en">${d.nameEn || ''}</p>`;
+      if (d.listed) h += `<div class="banner warn">⚠ 台灣母公司已上市 — 嚴格已脫離環金「未公開發行」定義，保留作升格軌跡案例</div>`;
+      if (d.isNew) h += `<div class="banner new">⚡ 近1–2年越南新設（${d.facts.find(f => f[0] === '成立')?.[1] || ''}） — 環金優先鎖定</div>`;
+      if (d.orphan) h += `<div class="banner orphan">🔍 越南端已驗證，台灣端查無公開索引 — 請點下方「查詢入口」手動查商業司</div>`;
+      h += '<dl class="facts">' + d.facts.map(f => `<dt>${f[0]}</dt><dd>${f[1]}</dd>`).join('') + '</dl>';
+      if (d.capital) h += `<div class="capital-line"><span class="amount ${d.capital.level === 'high' ? '' : 'unclear'}">${d.capital.amount}</span><span class="confidence ${d.capital.level === 'high' ? 'high' : ''}">${d.capital.label}</span></div>`;
+      if (d.note) {
+        h += `<div class="p-note">${d.note}`;
+        if (d.events?.length) h += '<ul class="events">' + d.events.map(e => `<li>▸ ${e}</li>`).join('') + '</ul>';
+        h += '</div>';
+      }
+      const rel = relList(d.id);
+      if (rel.length) {
+        h += '<div class="p-rel-title">關係（點一下看來源佐證）</div>';
+        rel.forEach((r, i) => h += `<div class="p-rel" data-idx="${i}"><span class="ptag">${typeLabel[r.type]}</span><span style="color:var(--muted);font-family:var(--mono);font-size:11px">${r.dir}</span><span>${r.other?.name || ''}</span><span class="chev">›</span></div>`);
+      }
+      h += verifyBlock(d.verifyLinks);
+      c.innerHTML = h;
+      c.querySelectorAll('.p-rel').forEach(el => el.addEventListener('click', () => openEdgePanel(rel[+el.dataset.idx].link)));
+      show();
+    }
 
-window.addEventListener('resize',()=>{
-  W=wrap.clientWidth;H=wrap.clientHeight;
-  svg.attr('width',W).attr('height',H);
-  sim.force('x',d3.forceX(xTarget).strength(.2)).force('y',d3.forceY(yTarget).strength(.12));
-  sim.alpha(.3).restart();
-});
-</script>
+    function openEdgePanel(d) {
+      const c = document.getElementById('panel-content');
+      const s = nodeById[d.source.id || d.source], t = nodeById[d.target.id || d.target];
+      let h = `<span class="back-link" id="backToNode">‹ 回上一層</span><br>`;
+      h += `<span class="p-country edge-${d.type}">${typeLabel[d.type]}</span>`;
+      h += `<h2 style="font-size:18px">${s?.label} → ${t?.label}</h2>`;
+      h += `<p class="name-en">${s?.name || ''} → ${t?.name || ''}</p>`;
+      if (d.amount) h += `<div class="capital-line"><span class="amount">${d.amount}</span><span class="confidence high">本連線對應金額</span></div>`;
+      if (d.sources?.length) {
+        h += '<div class="p-rel-title">來源佐證</div><div class="p-sources">';
+        d.sources.forEach(src => h += `<div class="p-source-row"><span class="stag">${src.tag}</span><span class="sdesc">${src.text}</span></div>`);
+        h += '</div>';
+      }
+      c.innerHTML = h;
+      document.getElementById('backToNode')?.addEventListener('click', () => openNodePanel(s));
+      show();
+    }
+
+    function show() { document.getElementById('panel').classList.add('open'); document.getElementById('backdrop').classList.add('open'); }
+    function hide() { document.getElementById('panel').classList.remove('open'); document.getElementById('backdrop').classList.remove('open'); }
+    document.getElementById('panel-close').addEventListener('click', hide);
+    document.getElementById('backdrop').addEventListener('click', hide);
+
+    window.addEventListener('resize', () => {
+      W = wrap.clientWidth; H = wrap.clientHeight;
+      svg.attr('width', W).attr('height', H);
+      sim.force('x', d3.forceX(xTarget).strength(.2)).force('y', d3.forceY(yTarget).strength(.12));
+      sim.alpha(.3).restart();
+    });
+  </script>
 </body>
+
 </html>
